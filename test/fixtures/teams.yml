@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nba_id: MyString
+  city: MyString
+  name: MyString
+  conference: MyString
+  division: MyString
+  line: 1.5
+
+two:
+  nba_id: MyString
+  city: MyString
+  name: MyString
+  conference: MyString
+  division: MyString
+  line: 1.5
