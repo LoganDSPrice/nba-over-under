@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contestant_id: 1
+  team_id: 1
+  over: false
+  lock: false
+
+two:
+  contestant_id: 1
+  team_id: 1
+  over: false
+  lock: false

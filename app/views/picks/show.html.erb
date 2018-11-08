@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contestant:</strong>
+  <%= @pick.contestant_id %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @pick.team_id %>
+</p>
+
+<p>
+  <strong>Over:</strong>
+  <%= @pick.over %>
+</p>
+
+<p>
+  <strong>Lock:</strong>
+  <%= @pick.lock %>
+</p>
+
+<%= link_to 'Edit', edit_pick_path(@pick) %> |
+<%= link_to 'Back', picks_path %>
