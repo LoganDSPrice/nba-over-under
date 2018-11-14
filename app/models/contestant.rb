@@ -10,5 +10,5 @@
 #
 
 class Contestant <ApplicationRecord
-
+  has_many :picks
 end
