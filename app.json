@@ -1,6 +1,7 @@
 {
   "name": "nba-over-under",
   "scripts": {
+    "postdeploy":"bundle exec rails db:migrate && bundle exec rails db:seed"
   },
   "env": {
     "LANG": {
