@@ -1,0 +1,2 @@
+class NbaMailer < ApplicationMailer
+end
