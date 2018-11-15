@@ -1,5 +1,5 @@
-desc "Grabs standings from NBA api"
-task get_standings: :environment do
+desc "Grabs standings from NBA api and evaluates all picks"
+task evaluate_picks: :environment do
   url = "http://data.nba.net/10s/prod/v1/current/standings_all.json"
   response = HTTParty.get(url)
   parsed = response.parsed_response
