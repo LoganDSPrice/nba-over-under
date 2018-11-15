@@ -41,9 +41,6 @@ response = HTTParty.get(url)
 parsed = response.parsed_response
 nba_teams = parsed["league"]["standard"].select {|t| t["isNBAFranchise"] == true }
 
-# team_file = File.read("teams.json")
-# teams_json = JSON.parse(team_file)
-# nba_teams = teams_json["league"]["standard"].select {|t| t["isNBAFranchise"] == true }
 
 Team.destroy_all
 nba_teams.each do |t|
