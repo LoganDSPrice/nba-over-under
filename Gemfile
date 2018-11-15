@@ -12,6 +12,7 @@ gem 'rails', '~> 5.2.1'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'httparty'
 
 
 group :development, :test do
