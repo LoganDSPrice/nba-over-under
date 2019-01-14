@@ -9,7 +9,7 @@
 #  lock          :boolean
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#
+# 
 
 class Pick < ApplicationRecord
   belongs_to :contestant
