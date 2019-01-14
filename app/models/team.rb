@@ -16,4 +16,8 @@
 
 class Team < ApplicationRecord
   has_many :picks
+
+  def over?
+    projected_wins > line
+  end 
 end

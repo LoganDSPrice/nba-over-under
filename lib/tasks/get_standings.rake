@@ -11,4 +11,16 @@ task :update_nba_standings => :environment do
     )
     puts "#{team_to_update.name} updated!"
   end
+
+  Pick.eager_load(:team).all.each do |pick|
+    if pick.over && pick.team.over?
+      pick.update_attributes(correct: true)
+    else
+      pick.update_attributes(correct: false)
+    end
+  end
+
+  def over?(team)
+    team.projected_wins > team.line
+  end
 end
