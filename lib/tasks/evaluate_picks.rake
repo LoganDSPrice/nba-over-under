@@ -23,11 +23,16 @@ task evaluate_picks: :environment do
       pick_result_hash[pick] = "Incorrect"
     end
   end
-
-  ap pick_result_hash
+  pick_result_hash
   # ap pick_result_hash.count { |k,v| v == "Correct"}
 
   # logan_results =  pick_result_hash.select { |k,v| k.contestant.name == "Logan"}
 
   # ap logan_results.select { |k,v| v == "Correct"}
+
+  users = [Contestant.find_by(name: "Logan")]
+
+  users.each do |user|
+    NbaMailer.send_scoring_update(user, pick_result_hash).deliver_now
+  end
 end
