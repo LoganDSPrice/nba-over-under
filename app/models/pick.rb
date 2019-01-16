@@ -14,4 +14,14 @@
 class Pick < ApplicationRecord
   belongs_to :contestant
   belongs_to :team
+
+  def score
+    if over && team.over?
+      lock ? 2 : 1
+    elsif !over && !team.over?
+      lock ? 2 : 1
+    else
+      0
+    end
+  end
 end

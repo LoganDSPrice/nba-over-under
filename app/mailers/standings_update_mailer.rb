@@ -1,19 +1,15 @@
 class StandingsUpdateMailer < ApplicationMailer
   def send_update_mailer
-    contestant_emails = Contestant.all.pluck(:email)
+    contestant_emails = "pavan.sarguru@gmail.com"
     @standings_hash = {}
-    Contestant.each do |contestant|
-      contestant.pick.each do |pick|
-        if pick.correct && pick.lock
-          @standings_hash[contestant.name][pick.team.name] = 2
-        elsif pick.correct
-          @standings_hash[contestant.name][pick.team.name] = 1
-        else
-          @standings_hash[contestant.name][pick.team.name] = 0
-        end
+    Contestant.eager_load(:picks).eager_load(:teams).all.each do |contestant|
+      @standings_hash[contestant.name] = {}
+
+      contestant.picks.each do |pick|
+        @standings_hash[contestant.name][pick.team.name] = pick.score
       end
     end
 
-    mail to: contestant_emails, subject: "NBA Over/Under Standings Update - #{Date.today.strftime("%B %d")}"
+    mail to: contest  ant_emails, subject: "NBA Over/Under Standings Update - #{Date.today.strftime("%B %d")}"
   end
 end
