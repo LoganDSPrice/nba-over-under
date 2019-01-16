@@ -1,6 +1,6 @@
 class StandingsUpdateMailer < ApplicationMailer
   def send_update_mailer
-    contestant_emails = "pavan.sarguru@gmail.com"
+    contestant_emails = Contestant.all.pluck(:email)
     picks_hash = {}
     Contestant.eager_load(:picks).eager_load(:teams).all.each do |contestant|
       picks_hash[contestant.name] = {}
