@@ -23,6 +23,6 @@ class NbaMailer < ApplicationMailer
       end
     end
 
-    mail(to: @user.email, subject: 'League scoring update!')
+    mail(to: @user.email, subject: "League scoring update for #{Date.today.strftime("%A, %b %d")}!")
   end
 end
