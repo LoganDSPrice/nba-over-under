@@ -11,4 +11,5 @@
 
 class Contestant <ApplicationRecord
   has_many :picks
+  has_many :teams, through: :picks
 end

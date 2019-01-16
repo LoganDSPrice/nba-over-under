@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>These are the current over/under standings with scoring as such: </p>
+      <ul>
+        <li>+0 for an incorrect pick</li>
+        <li>+1 for a correct pick</li>
+        <li>+2 for a locked correct pick</li>
+      </ul>
+    <h1>Current Standings</h1>
+    <ul style="list-style-type:none">
+      <% @final_hash["standings"].each do |contestant, score| %>
+        <li style="font-size: 28px"><%= contestant %> - <%= score %></li>
+      <% end %>
+    </ul>
+  </body>
+</html>
