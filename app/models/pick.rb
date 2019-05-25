@@ -17,13 +17,13 @@ class Pick < ApplicationRecord
 
   def score
     if over && team.over?
-      lock ? 4 : 3
+      lock ? 2 : 1
     elsif !over && !team.over?
-      lock ? 4 : 3
+      lock ? 2 : 1
     elsif lock
-      0
+      -2
     else
-      1
+      0
     end
   end
 end
