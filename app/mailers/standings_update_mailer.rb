@@ -1,6 +1,5 @@
 class StandingsUpdateMailer < ApplicationMailer
   def send_update_mailer(emails = Contestant.all.pluck(:email))
-    contestant_emails = emails
     picks_hash = {}
     Contestant.eager_load(:picks).eager_load(:teams).all.each do |contestant|
       picks_hash[contestant.name] = {}
@@ -18,8 +17,8 @@ class StandingsUpdateMailer < ApplicationMailer
     @final_hash = {}
     @final_hash["picks"] = picks_hash
     @final_hash["standings"] = sort_standings(standings)
-    puts @final_hash["standings"]
-    # mail to: contestant_emails, subject: "NBA Over/Under Standings Update - #{Date.today.strftime("%B %d")}"
+
+    mail to: emails, subject: "NBA Over/Under Standings Update - #{Date.today.strftime("%B %d")}"
   end
 
   def sort_standings(standings_hash)

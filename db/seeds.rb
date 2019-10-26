@@ -24,6 +24,14 @@ contestants = [
   {
     name:  "Neal",
     email: "ndodia2@gmail.com"
+  },
+  {
+    name:  "Yogen",
+    email: "yogenasher@gmail.com"
+  },
+  {
+    name:  "Avinash",
+    email: "avinash.sarguru@gmail.com"
   }
 ]
 
@@ -36,7 +44,7 @@ contestants.each do |contestant|
   new_contestant.save if new_contestant.valid?
 end
 
-url = "http://data.nba.net/10s/prod/v2/2018/teams.json"
+url = "http://data.nba.net/10s/prod/v2/2019/teams.json"
 response = HTTParty.get(url)
 parsed = response.parsed_response
 nba_teams = parsed["league"]["standard"].select {|t| t["isNBAFranchise"] == true }
@@ -56,12 +64,14 @@ end
 
 Pick.destroy_all
 locks = {
-  "Pavan" => ["Raptors", "Bulls", "Rockets"],
-  "Logan" => ["Celtics", "Bucks", "Bulls"],
-  "Peter" => ["76ers", "Rockets", "Kings"],
-  "Samarth" => ["Bucks", "Lakers", "Timberwolves"],
-  "Piku" => ["Cavaliers", "Timberwolves", "Grizzlies"],
-  "Neal" => ["Magic", "Jazz", "Nuggets"]
+  "Pavan" => ["Hawks", "Pacers", "Knicks"],
+  "Logan" => ["Hornets", "Warriors", "Timberwolves"],
+  "Peter" => ["Mavericks", "Nuggets", "Heat"],
+  "Samarth" => ["Bulls", "Rockets", "Bucks"],
+  "Piku" => ["Bulls", "Thunder", "Wizards"],
+  "Neal" => ["Pelicans", "Suns", "Kings"],
+  "Yogen" => ["Celtics", "Cavaliers", "Warriors"],
+  "Avinash" => ["Hawks", "Pelicans", "Knicks"],
 }
 CSV.foreach("picks.csv", headers: true) do |row|
   team = Team.find_by_name(row["Team"])

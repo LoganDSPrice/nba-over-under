@@ -21,9 +21,21 @@ class Pick < ApplicationRecord
     elsif !over && !team.over?
       lock ? 2 : 1
     elsif lock
-      -2
+      -1
     else
       0
     end
+  end
+
+  def correct?
+    over && team.over? || !over && !team.over?
+  end
+
+  def team_name
+    team.name
+  end
+
+  def team_city
+    team.city
   end
 end

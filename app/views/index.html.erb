@@ -1,1 +1,36 @@
-Hello World! Xanadu NBA Over/Under League
+<h1>NBA Over/Under Standings 2019-2020</h1>
+<table>
+  <tr>
+    <td>Team</td>
+    <td>Win Total</td>
+    <% @contestant_names.each do |name| %>
+      <td><%= name %></td>
+    <% end %>
+  </tr>
+  <% @teams.each do |team| %>
+    <tr>
+      <td><%= team.name %></td>
+      <td><%= team.line %></td>
+      <% @picks[team.name].each do |pick| %>
+        <% if pick.over? && pick.lock? %>
+          <td class="<%= pick.correct? ? 'correct' : 'incorrect'%>">
+            <%= EmojiHelper.emojify("OVER :lock:") %>
+          </td>
+        <% elsif pick.over? %>
+          <td class="<%= pick.correct? ? 'correct' : 'incorrect'%>">
+            OVER
+          </td>
+        <% elsif pick.lock? %>
+          <td class="<%= pick.correct? ? 'correct' : 'incorrect'%>">
+            <%= EmojiHelper.emojify("UNDER :lock:") %>
+          </td>
+        <% else %>
+          <td class="<%= pick.correct? ? 'correct' : 'incorrect'%>">
+            UNDER
+          </td>
+        <% end  %>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<p><%=  @last_updated %></p>
