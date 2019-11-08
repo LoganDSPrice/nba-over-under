@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   def index
-    @last_updated = Team.first.updated_at.strftime("Last updated at %H:%M on %m/%d")
+    @last_updated = Team.first.updated_at.in_time_zone("Central Time (US & Canada)").strftime("Last updated at %H:%M on %m/%d")
     @teams = Team.all.sort_by { |team| team.city }
     @contestant_names = Contestant.all.pluck(:name)
 

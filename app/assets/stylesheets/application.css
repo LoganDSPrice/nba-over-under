@@ -22,6 +22,11 @@
      font-family: 'Lato', Arial, sans-serif;
  }
 
+ p.spaced-header {
+     text-decoration: underline;
+     letter-spacing: 25px;
+ }
+
  h1 {
      font-family: "proxima-nova",sans-serif;
      letter-spacing: -0.01em;
@@ -36,9 +41,22 @@
      text-rendering: optimizeLegibility;
  }
 
- div.standings {
+ ul {
+    list-style: none;
+    padding-left: 10px;
+ }
+
+ div.intro {
+    display: flex;
     width: 80%;
     margin: auto;
+    flex-direction: row;
+    justify-content: space-evenly;
+ }
+
+ div.standings {
+     display: flex;
+     justify-content: space-evenly;
  }
 
  table {
@@ -56,9 +74,14 @@
  }
 
  .correct {
-   background: #33cc33;
+   background: #006600;
  }
 
  .incorrect {
    background: #ff0000;
+ }
+
+ p.updated_at {
+    width: 80%;
+    margin: auto;
  }
