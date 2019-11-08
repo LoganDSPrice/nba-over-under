@@ -19,6 +19,8 @@ class StandingsUpdateMailer < ApplicationMailer
     @final_hash["standings"] = sort_standings(standings)
 
     mail to: emails, subject: "NBA Over/Under Standings Update - #{Date.today.strftime("%B %d")}"
+
+    puts "emails sent!"
   end
 
   def sort_standings(standings_hash)
