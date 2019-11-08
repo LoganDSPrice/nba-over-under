@@ -36,9 +36,14 @@
      text-rendering: optimizeLegibility;
  }
 
+ div.standings {
+    width: 80%;
+    margin: auto;
+ }
+
  table {
-     width: 80%;
-     margin: auto;
+    width: 80%;
+    margin: auto;
  }
 
  table, th, td {
@@ -51,9 +56,9 @@
  }
 
  .correct {
-   background: green
+   background: #33cc33;
  }
 
  .incorrect {
-   background: red
+   background: #ff0000;
  }

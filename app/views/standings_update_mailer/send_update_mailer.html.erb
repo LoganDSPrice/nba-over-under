@@ -11,11 +11,17 @@
         <li>+1 for a correct pick</li>
         <li>+2 for a locked correct pick</li>
       </ul>
-    <h2>Current Standings</h2>
+    <h2 style="text-decoration: underline">Current Standings</h2>
     <ul style="list-style-type:none">
       <% @final_hash["standings"].each do |contestant, score| %>
         <li style="font-size: 20px"><%= contestant %> - <%= score %></li>
       <% end %>
     </ul>
+
+    <p>
+      <a href="https://xanadu-nba-production.herokuapp.com/">
+        Click here to see the full Over/Under table
+      </a>
+    </p>
   </body>
 </html>

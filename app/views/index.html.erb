@@ -1,4 +1,24 @@
 <h1>NBA Over/Under Standings 2019-2020</h1>
+
+<div class="standings">
+  <p>These are the current over/under standings with scoring as such: </p>
+
+  <ul style="list-style-type:none">
+    <li>- 1 for an locked incorrect pick</li>
+    <li>+ 0 for a incorrect pick</li>
+    <li>+ 1 for a correct pick</li>
+    <li>+ 2 for a locked correct pick</li>
+  </ul>
+
+  <h2 style="text-decoration: underline">Current Standings</h2>
+
+  <ul style="list-style-type:none">
+    <% @standings.each do |contestant, score| %>
+      <li style="font-size: 20px"><%= contestant %> - <%= score %></li>
+    <% end %>
+  </ul>
+</div>
+
 <table>
   <tr>
     <td>Team</td>
