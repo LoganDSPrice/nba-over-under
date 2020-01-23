@@ -30,6 +30,8 @@
   <tr>
     <td>Team</td>
     <td>Win Total</td>
+    <td>Projected Wins</td>
+    <td>+/-</td>
     <% @contestant_names.each do |name| %>
       <td><%= name %></td>
     <% end %>
@@ -38,6 +40,8 @@
     <tr>
       <td><%= team.name %></td>
       <td><%= team.line %></td>
+      <td><%= team.projected_wins.round(1) %></td>
+      <td><%= (team.projected_wins - team.line).round(1) %></td>
       <% @picks[team.name].each do |pick| %>
         <% if pick.over? && pick.lock? %>
           <td class="<%= pick.correct? ? 'correct' : 'incorrect'%>">
