@@ -24,4 +24,17 @@ class ApplicationController < ActionController::Base
 
     standings.sort_by {|_key, score| score}.reverse.to_h
   end
+
+  def authenticate_active_admin_user!
+    puts "*"*60
+    puts "authenticate_active_admin_user!"
+    puts "*"*60
+    authenticate_user!
+    unless current_user.admin?
+      flash[:alert] = "Unauthorized Access!"
+      redirect_to root_path
+    end
+  end
+
+  
 end

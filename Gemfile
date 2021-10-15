@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.3'
 
+gem 'activeadmin'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
@@ -17,6 +18,7 @@ gem 'gemoji'
 gem 'jquery-rails'
 gem 'devise'
 gem 'devise_invitable', '~> 2.0.0'
+# gem 'cancancan'
 
 group :development, :test do
   gem 'awesome_print'
@@ -27,6 +29,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'dotenv-rails'
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
