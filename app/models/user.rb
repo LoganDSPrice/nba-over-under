@@ -10,6 +10,10 @@
 #
 
 class User <ApplicationRecord
-  has_many :picks
-  has_many :teams, through: :picks
+  devise :invitable, :database_authenticatable,
+         :recoverable, :rememberable, :validatable
+         
+  has_many  :enrollments, dependent: :destroy
+  has_many :enrolled_seasons, through: :enrollments, source: :season
+  has_many :picks, through: :enrollments
 end

@@ -1,0 +1,30 @@
+<h1>
+  Lines for <%= @season.year - 1 %> - <%= @season.year %>
+</h1>
+
+<table>
+  <tr>
+    <th>Conference</th>
+    <th>Division</th>
+    <th>Team</th>
+    <th>Line</th>
+    <th>Win Pace</th>
+  </tr>
+  <% @season_lines_by_division.each do |conference, division_hash| %>
+    <tr>
+      <td colspan="6">
+        <%= conference %>
+      </td>
+    </tr>
+    <% division_hash.each do |division_name, division_season_lines| %>
+      <tr>
+        <td></td>
+        <td colspan="5">
+          <%= division_name %>
+        </td>
+      </tr>
+      <%= render @season_lines.where(team: division_season_lines.map(&:team)) %>
+    <% end %>
+  <% end %>
+  <%#= render @picks %>
+</table>

@@ -3,7 +3,7 @@
 # Table name: picks
 #
 #  id            :bigint(8)        not null, primary key
-#  contestant_id :integer
+#  user_id       :integer
 #  team_id       :integer
 #  over          :boolean
 #  lock          :boolean
@@ -12,6 +12,17 @@
 #
 
 class Pick < ApplicationRecord
+  has_many  :locks, dependent: :destroy
+  belongs_to :enrollment
+  belongs_to :season_line
+  has_one  :season, through: :enrollment
+  has_one  :team, through: :season_line
+  has_one  :user, through: :enrollment
+
+  
+  
+  
+  
   belongs_to :user
   belongs_to :team
 

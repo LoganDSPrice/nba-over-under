@@ -20,6 +20,6 @@ class PicksController < ApplicationController
   end
   
   def pick_params
-    @pick_params = params.require(:pick).permit!
+    @pick_params ||= params.require(:pick).permit!
   end
 end

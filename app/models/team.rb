@@ -15,7 +15,8 @@
 #
 
 class Team < ApplicationRecord
-  has_many :picks
+  has_many  :season_lines, dependent: :destroy
+  has_many :picks, through: :season_lines
 
   def over?
     projected_wins > line

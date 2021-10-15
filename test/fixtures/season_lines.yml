@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team: one
+  season: one
+  projected_wins: 1.5
+  line: 1.5
+
+two:
+  team: two
+  season: two
+  projected_wins: 1.5
+  line: 1.5

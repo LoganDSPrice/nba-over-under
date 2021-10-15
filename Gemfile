@@ -15,6 +15,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'httparty'
 gem 'gemoji'
 gem 'jquery-rails'
+# gem 'devise'
+# gem 'devise_invitable', '~> 2.0.0'
 
 group :development, :test do
   gem 'awesome_print'

@@ -1,4 +1,5 @@
 require 'csv'
+AppSetting.create
 
 users = [
   {
@@ -77,14 +78,14 @@ locks = {
   "Yogen" => ["Celtics", "Cavaliers", "Warriors"],
   "Avinash" => ["Hawks", "Pelicans", "Knicks"],
 }
-CSV.foreach("picks.csv", headers: true) do |row|
-  team = Team.find_by_name(row["Team"])
-  team.update_attributes(line: row["Win Total"].to_f)
+# CSV.foreach("picks.csv", headers: true) do |row|
+#   team = Team.find_by_name(row["Team"])
+#   team.update_attributes(line: row["Win Total"].to_f)
 
-  row.headers.each do |header|
-    if user = User.find_by(name: header)
-      team.picks.create(user: user, over: row[header] == "OVER", lock: team.name.in?(locks[user.name]))
-    end
-  end
+#   row.headers.each do |header|
+#     if user = User.find_by(name: header)
+#       team.picks.create(user: user, over: row[header] == "OVER", lock: team.name.in?(locks[user.name]))
+#     end
+#   end
 
-end
+# end

@@ -10,20 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_15_163124) do
+ActiveRecord::Schema.define(version: 2021_10_15_180339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "picks", force: :cascade do |t|
+  create_table "app_settings", force: :cascade do |t|
+    t.integer "locks_limit", default: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "enrollments", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "team_id"
+    t.bigint "season_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["season_id"], name: "index_enrollments_on_season_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
+  end
+
+  create_table "locks", force: :cascade do |t|
+    t.bigint "pick_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pick_id"], name: "index_locks_on_pick_id"
+  end
+
+  create_table "picks", force: :cascade do |t|
     t.boolean "over"
     t.boolean "lock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_id"], name: "index_picks_on_team_id"
-    t.index ["user_id"], name: "index_picks_on_user_id"
+    t.bigint "season_line_id"
+    t.bigint "enrollment_id"
+    t.index ["enrollment_id"], name: "index_picks_on_enrollment_id"
+    t.index ["season_line_id"], name: "index_picks_on_season_line_id"
+  end
+
+  create_table "season_lines", force: :cascade do |t|
+    t.bigint "team_id"
+    t.bigint "season_id"
+    t.float "projected_wins"
+    t.float "line"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["season_id"], name: "index_season_lines_on_season_id"
+    t.index ["team_id"], name: "index_season_lines_on_team_id"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.integer "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teams", force: :cascade do |t|
@@ -32,7 +71,6 @@ ActiveRecord::Schema.define(version: 2021_10_15_163124) do
     t.string "name"
     t.string "conference"
     t.string "division"
-    t.float "line"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "projected_wins"
@@ -43,8 +81,12 @@ ActiveRecord::Schema.define(version: 2021_10_15_163124) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
   end
 
-  add_foreign_key "picks", "teams"
-  add_foreign_key "picks", "users"
+  add_foreign_key "enrollments", "seasons"
+  add_foreign_key "enrollments", "users"
+  add_foreign_key "locks", "picks"
+  add_foreign_key "season_lines", "seasons"
+  add_foreign_key "season_lines", "teams"
 end
