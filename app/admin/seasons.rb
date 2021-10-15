@@ -14,6 +14,7 @@ ActiveAdmin.register Season do
       table_for season.season_lines do
         column("Team") { |season_line| season_line.team.name }
         column("Line") { |season_line| season_line.line }
+        column("") { |season_line| link_to "Edit", edit_admin_season_line_path(season_line) }
       end
     end
   end
