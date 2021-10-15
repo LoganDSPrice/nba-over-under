@@ -19,12 +19,7 @@ class Pick < ApplicationRecord
   has_one  :team, through: :season_line
   has_one  :user, through: :enrollment
 
-  
-  
-  
-  
-  belongs_to :user
-  belongs_to :team
+  validates_uniqueness_of :season_line, scope: :enrollment
 
   def score
     if over && team.over?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_15_205322) do
+ActiveRecord::Schema.define(version: 2021_10_15_212449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_10_15_205322) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["season_id"], name: "index_enrollments_on_season_id"
+    t.index ["user_id", "season_id"], name: "index_enrollments_on_user_id_and_season_id", unique: true
     t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_10_15_205322) do
     t.bigint "season_line_id"
     t.bigint "enrollment_id"
     t.index ["enrollment_id"], name: "index_picks_on_enrollment_id"
+    t.index ["season_line_id", "enrollment_id"], name: "index_picks_on_season_line_id_and_enrollment_id", unique: true
     t.index ["season_line_id"], name: "index_picks_on_season_line_id"
   end
 

@@ -30,4 +30,8 @@ class User <ApplicationRecord
   def password_required?
     new_record? ? false : super
   end
+
+  def enroll_for_season(season)
+    enrolled_seasons << season
+  end
 end
