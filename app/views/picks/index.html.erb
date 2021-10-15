@@ -1,0 +1,27 @@
+<table>
+  <tr>
+    <th>Conference</th>
+    <th>Division</th>
+    <th>Team</th>
+    <th>Line</th>
+    <th>Over?</th>
+    <th>Locked?</th>
+  </tr>
+  <% @teams_by_division.each do |conference, division_hash| %>
+    <tr>
+      <td colspan="6">
+        <%= conference %>
+      </td>
+    </tr>
+    <% division_hash.each do |division_name, division_teams| %>
+      <tr>
+        <td></td>
+        <td colspan="5">
+          <%= division_name %>
+        </td>
+      </tr>
+      <%= render @picks.where(team: division_teams) %>
+    <% end %>
+  <% end %>
+  <%#= render @picks %>
+</table>

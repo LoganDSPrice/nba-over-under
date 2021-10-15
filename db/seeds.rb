@@ -1,6 +1,6 @@
 require 'csv'
 
-contestants = [
+users = [
   {
     name:  "Pavan",
     email: "pavan.sarguru@gmail.com"
@@ -32,16 +32,20 @@ contestants = [
   {
     name:  "Avinash",
     email: "avinash.sarguru@gmail.com"
-  }
+  },
+  {
+    name:  "Vinayak",
+    email: "vinayak.ishwar@gmail.com"
+  },
 ]
 
-Contestant.destroy_all
-contestants.each do |contestant|
-  new_contestant = Contestant.new(
-    name:  contestant[:name],
-    email: contestant[:email]
+User.destroy_all
+users.each do |user|
+  new_user = User.new(
+    name:  user[:name],
+    email: user[:email]
   )
-  new_contestant.save if new_contestant.valid?
+  new_user.save if new_user.valid?
 end
 
 url = "http://data.nba.net/10s/prod/v2/2019/teams.json"
@@ -78,8 +82,8 @@ CSV.foreach("picks.csv", headers: true) do |row|
   team.update_attributes(line: row["Win Total"].to_f)
 
   row.headers.each do |header|
-    if contestant = Contestant.find_by(name: header)
-      team.picks.create(contestant: contestant, over: row[header] == "OVER", lock: team.name.in?(locks[contestant.name]))
+    if user = User.find_by(name: header)
+      team.picks.create(user: user, over: row[header] == "OVER", lock: team.name.in?(locks[user.name]))
     end
   end
 

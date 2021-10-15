@@ -20,8 +20,8 @@
     <h3 style="text-decoration: underline">Current Standings</h3>
 
     <ul style="list-style-type:none">
-      <% @final_hash["standings"].each do |contestant, score| %>
-        <li><%= contestant %> - <%= score %></li>
+      <% @final_hash["standings"].each do |user, score| %>
+        <li><%= user %> - <%= score %></li>
       <% end %>
     </ul>
 

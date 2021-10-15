@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   def index
     @last_updated = Team.first.updated_at.in_time_zone("Central Time (US & Canada)").strftime("Last updated at %H:%M on %m/%d")
     @teams = Team.all.sort_by { |team| team.city }
-    @contestant_names = Contestant.all.pluck(:name)
+    @user_names = User.all.pluck(:name)
 
-    all_picks = Pick.includes(:team, :contestant).all.sort_by { |pick| [pick.team_city, pick.contestant.id] }
+    all_picks = Pick.includes(:team, :user).all.sort_by { |pick| [pick.team_city, pick.user.id] }
     @picks = all_picks.group_by { |pick| pick.team_name }
     @standings = build_standings(all_picks)
 
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   private
 
   def build_standings(picks)
-    grouped_picks = picks.group_by { |pick| pick.contestant.name }
+    grouped_picks = picks.group_by { |pick| pick.user.name }
 
     standings = grouped_picks.each do |name, picks|
       grouped_picks[name] = picks.inject(0){|sum, x| sum + x.score}

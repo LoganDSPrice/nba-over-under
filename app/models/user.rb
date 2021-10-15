@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: contestants
+# Table name: users
 #
 #  id         :bigint(8)        not null, primary key
 #  name       :string
@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 
-class Contestant <ApplicationRecord
+class User <ApplicationRecord
   has_many :picks
   has_many :teams, through: :picks
 end

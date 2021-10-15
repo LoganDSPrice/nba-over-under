@@ -1,0 +1,19 @@
+<tr id="<%= dom_id(pick) %>">
+  <td></td>
+  <td></td>
+  <td>
+    <%= pick.team.name %>
+  </td>
+  <td>
+    <%= pick.team.line %>
+  </td>
+  <%= form_with(model: pick, local: false) do |f| %>
+    <td>
+      <%= f.check_box :over, class: "ajax-input" %>
+    </td>
+
+    <td>
+      <%= f.check_box :lock, class: "ajax-input" %>
+    </td>
+  <% end %>
+</tr>

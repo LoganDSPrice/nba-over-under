@@ -12,7 +12,7 @@
 #
 
 class Pick < ApplicationRecord
-  belongs_to :contestant
+  belongs_to :user
   belongs_to :team
 
   def score

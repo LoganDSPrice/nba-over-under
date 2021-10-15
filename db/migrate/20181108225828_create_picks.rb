@@ -1,8 +1,8 @@
 class CreatePicks < ActiveRecord::Migration[5.2]
   def change
     create_table :picks do |t|
-      t.integer :contestant_id
-      t.integer :team_id
+      t.references :contestant, foreign_key: true
+      t.references :team, foreign_key: true
       t.boolean :over
       t.boolean :lock
 

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.0'
+ruby '2.7.3'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
@@ -14,6 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'httparty'
 gem 'gemoji'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'awesome_print'
@@ -31,6 +32,10 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring'
   gem 'web-console', '>= 3.3.0'
+  gem 'rails-erd'
+  gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-performance'
 end
 
 group :test do
