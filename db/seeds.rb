@@ -46,7 +46,11 @@ users.each do |user|
     name:  user[:name],
     email: user[:email]
   )
-  new_user.save if new_user.valid?
+  if new_user.valid?
+    new_user.save
+  else
+    puts new_user.errors.full_messages
+  end
 end
 
 url = "http://data.nba.net/10s/prod/v2/2019/teams.json"

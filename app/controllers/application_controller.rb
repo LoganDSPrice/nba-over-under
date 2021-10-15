@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!
+
   def index
     @last_updated = Team.first.updated_at.in_time_zone("Central Time (US & Canada)").strftime("Last updated at %H:%M on %m/%d")
     @teams = Team.all.sort_by { |team| team.city }
