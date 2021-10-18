@@ -7,14 +7,28 @@
   <td>
     <%= pick.season_line.line %>
   </td>
-  <%= form_with(model: pick, local: false) do |f| %>
-    <td>
-      <%= f.check_box :over, class: "ajax-input" %>
-    </td>
+  <td>
+    <%= form_with(model: pick, local: false) do |f| %>
+      <% button_classes = ["btn"] %>
+      <% button_classes << (f.object.over == true ? "btn-success" : "btn-outline-success")%>
+      <div>
+        <%= f.hidden_field :over, value: true %>
+        <%= f.submit "OVER", class: button_classes.join(" ") %>
+      </div>
 
-  <% end %>
-  <% lock = pick.lock || pick.build_lock %>
+    <% end %>
+    <%= form_with(model: pick, local: false) do |f| %>
+      <% button_classes = ["btn"] %>
+      <% button_classes << (f.object.over == false ? "btn-danger" : "btn-outline-danger")%>
+      <div>
+        <%= f.hidden_field :over, value: false %>
+        <%= f.submit "UNDER", class: button_classes.join(" ") %>
+      </div>
+
+    <% end %>
+  </td>
   <td >
+    <% lock = pick.lock || pick.build_lock %>
     <%= render lock, pick: pick %>
   </td>
 </tr>

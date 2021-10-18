@@ -21,8 +21,8 @@ ActiveStorage.start()
 
 
 
-document.addEventListener("turbolinks:load", function() {
-  $("body").on("change", ".ajax-input", function() {
-    Rails.fire(this.form, "submit");
-  });
-});
+// document.addEventListener("turbolinks:load", function() {
+//   $("body").on("change", ".ajax-input", function() {
+//     Rails.fire(this.form, "submit");
+//   });
+// });

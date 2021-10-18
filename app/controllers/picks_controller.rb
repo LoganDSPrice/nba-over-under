@@ -10,6 +10,10 @@ class PicksController < ApplicationController
   end
 
   def update
+    puts "*"*60
+    puts "Updating a pick!"
+    puts "*"*60
+    
     # error clause for if it fails to update
     
     @pick.reload unless @pick.update(pick_params)
