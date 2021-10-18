@@ -2,16 +2,15 @@
 #
 # Table name: teams
 #
-#  id             :bigint(8)        not null, primary key
-#  nba_id         :string
+#  id             :bigint           not null, primary key
 #  city           :string
-#  name           :string
 #  conference     :string
 #  division       :string
-#  line           :float
+#  name           :string
+#  projected_wins :float
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  projected_wins :float
+#  nba_id         :string
 #
 
 class Team < ApplicationRecord

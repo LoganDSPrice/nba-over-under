@@ -2,13 +2,19 @@
 #
 # Table name: picks
 #
-#  id            :bigint(8)        not null, primary key
-#  user_id       :integer
-#  team_id       :integer
-#  over          :boolean
-#  lock          :boolean
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id             :bigint           not null, primary key
+#  lock           :boolean
+#  over           :boolean
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  enrollment_id  :bigint
+#  season_line_id :bigint
+#
+# Indexes
+#
+#  index_picks_on_enrollment_id                     (enrollment_id)
+#  index_picks_on_season_line_id                    (season_line_id)
+#  index_picks_on_season_line_id_and_enrollment_id  (season_line_id,enrollment_id) UNIQUE
 #
 
 class Pick < ApplicationRecord
