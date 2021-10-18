@@ -8,24 +8,9 @@
     <%= pick.season_line.line %>
   </td>
   <td>
-    <%= form_with(model: pick, local: false) do |f| %>
-      <% button_classes = ["btn"] %>
-      <% button_classes << (f.object.over == true ? "btn-success" : "btn-outline-success")%>
-      <div>
-        <%= f.hidden_field :over, value: true %>
-        <%= f.submit "OVER", class: button_classes.join(" ") %>
-      </div>
-
-    <% end %>
-    <%= form_with(model: pick, local: false) do |f| %>
-      <% button_classes = ["btn"] %>
-      <% button_classes << (f.object.over == false ? "btn-danger" : "btn-outline-danger")%>
-      <div>
-        <%= f.hidden_field :over, value: false %>
-        <%= f.submit "UNDER", class: button_classes.join(" ") %>
-      </div>
-
-    <% end %>
+    <div class="col-12">
+      <%= render partial: "/picks/over_under_buttons", locals: {pick: pick} %>
+    </div>
   </td>
   <td >
     <% lock = pick.lock || pick.build_lock %>

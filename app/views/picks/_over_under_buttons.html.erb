@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-6">
+    <%= form_with(model: pick, local: false) do |f| %>
+      <% button_classes = ["btn btn-lg col-12"] %>
+      <% button_classes << (f.object.over == true ? "btn-success disabled" : "btn-outline-success")%>
+      <%= f.hidden_field :over, value: true %>
+      <%= f.submit "OVER", class: button_classes.join(" ") %>
+    <% end %>
+  </div>
+
+  <div class="col-6">
+    <%= form_with(model: pick, local: false) do |f| %>
+      <% button_classes = ["btn btn-lg col-12"] %>
+      <% button_classes << (f.object.over == false ? "btn-danger disabled" : "btn-outline-danger")%>
+      <%= f.hidden_field :over, value: false %>
+      <%= f.submit "UNDER", class: button_classes.join(" ") %>
+    <% end %>
+  </div>
+</div>
