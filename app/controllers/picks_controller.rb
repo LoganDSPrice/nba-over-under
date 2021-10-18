@@ -25,7 +25,5 @@ class PicksController < ApplicationController
   
   def pick_params
     @pick_params ||= params.require(:pick).permit!
-    @pick_params[:lock_attributes] = @pick_params[:lock_attributes].reject {|k,v| v[:should_create] != "1"}
-    @pick_params
   end
 end
