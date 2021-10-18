@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:registrations]
   root "seasons#index"
 
-  # resources :users
-  resources :picks, only: [:index, :update] do 
+  resource :my_picks, only: :show
+  
+  resources :picks, only: [:update] do 
     resource :lock
   end
   resources :seasons do 

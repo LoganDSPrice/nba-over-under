@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
+  include SessionsHelper
   before_action :authenticate_user!
+
 
   def index
     @last_updated = Team.first.updated_at.in_time_zone("Central Time (US & Canada)").strftime("Last updated at %H:%M on %m/%d")
@@ -12,6 +14,7 @@ class ApplicationController < ActionController::Base
 
     render "/index.html.erb"
   end
+
 
   private
 

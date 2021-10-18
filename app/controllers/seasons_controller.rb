@@ -1,4 +1,9 @@
 class SeasonsController < ApplicationController
+
+  def show
+    
+  end
+  
   def new
     @season = Season.new
   end
