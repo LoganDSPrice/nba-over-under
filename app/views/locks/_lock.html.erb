@@ -2,11 +2,11 @@
 <div id="lock_for_pick_<%= pick.id %>">
   <% text = pick.locked? ? "Pick is locked!" : "Pick is unlocked!" %>
   <% if pick.locked? %>
-    <%= link_to("Unlock Pick!", pick_lock_path(pick), method: :delete, remote: true) %>
+    <%= link_to("Unlock Pick!", pick_lock_path(pick), method: :delete, remote: true, class: "btn col-12 btn-primary") %>
   <% else %>
     <%= form_with(model: [pick, lock], local: false) do |f| %>
       <%= f.hidden_field :pick_id %>
-      <%= f.submit "Lock pick!" %>
+      <%= f.submit "Lock pick!", class: "btn btn-outline-primary col-12" %>
     <% end%>
   <% end %>
   <div>
