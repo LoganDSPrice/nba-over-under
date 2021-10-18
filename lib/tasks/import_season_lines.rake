@@ -9,14 +9,6 @@ task :import_season_lines, [:filename] => :environment do |t, args|
   args = opts.order!(ARGV) {}
   opts.parse!(args)
 
-  CSV.foreach(options[:filename], headers: true) do |row|
-    team = Team.find_by_name(row["Name"])
-    season = Season.find_or_create_by(year: row["Season"])
-    
-    season_line = SeasonLine.find_or_initialize_by(season: season, team: team)
 
-    if season_line.line.nil?
-      season_line.update(line: row["Line"])
-    end
-  end
+  CsvSeasonLineImporter.import_csv(options[:filename])
 end

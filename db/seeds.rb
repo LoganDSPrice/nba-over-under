@@ -1,17 +1,23 @@
 require 'csv'
 AppSetting.create
 
+User.destroy_all
+Team.destroy_all
+Pick.destroy_all
+Enrollment.destroy_all
+Lock.destroy_all
+
 users = [
-  {
-    name:  "Pavan",
-    email: "pavan.sarguru@gmail.com",
-    admin: false
-  },
   {
     name:  "Logan",
     email: "logandsprice@gmail.com",
     admin: true,
     password: "password"
+  },
+  {
+    name:  "Pavan",
+    email: "pavan.sarguru@gmail.com",
+    admin: false
   },
   {
     name:  "Peter",
@@ -50,7 +56,6 @@ users = [
   },
 ]
 
-User.destroy_all
 users.each do |user|
   new_user = User.new(user)
   if new_user.valid?
@@ -66,7 +71,6 @@ parsed = response.parsed_response
 nba_teams = parsed["league"]["standard"].select {|t| t["isNBAFranchise"] == true }
 
 
-Team.destroy_all
 nba_teams.each do |team|
   new_team =  Team.new(
     nba_id: team["teamId"],
@@ -78,25 +82,32 @@ nba_teams.each do |team|
   new_team.save if new_team.valid?
 end
 
-Pick.destroy_all
-locks = {
-  "Pavan" => ["Hawks", "Pacers", "Knicks"],
-  "Logan" => ["Hornets", "Warriors", "Timberwolves"],
-  "Peter" => ["Mavericks", "Nuggets", "Heat"],
-  "Samarth" => ["Bulls", "Rockets", "Bucks"],
-  "Piku" => ["Bulls", "Thunder", "Wizards"],
-  "Neal" => ["Pelicans", "Suns", "Kings"],
-  "Yogen" => ["Celtics", "Cavaliers", "Warriors"],
-  "Avinash" => ["Hawks", "Pelicans", "Knicks"],
-}
-# CSV.foreach("picks.csv", headers: true) do |row|
-#   team = Team.find_by_name(row["Team"])
-#   team.update_attributes(line: row["Win Total"].to_f)
+# locks = {
+#   "Logan" => ["Hornets", "Warriors", "Timberwolves"],
+#   "Pavan" => ["Hawks", "Pacers", "Knicks"],
+#   "Peter" => ["Mavericks", "Nuggets", "Heat"],
+#   "Samarth" => ["Bulls", "Rockets", "Bucks"],
+#   "Piku" => ["Bulls", "Thunder", "Wizards"],
+#   "Neal" => ["Pelicans", "Suns", "Kings"],
+#   "Yogen" => ["Celtics", "Cavaliers", "Warriors"],
+#   "Avinash" => ["Hawks", "Pelicans", "Knicks"],
+# }
 
-#   row.headers.each do |header|
-#     if user = User.find_by(name: header)
-#       team.picks.create(user: user, over: row[header] == "OVER", lock: team.name.in?(locks[user.name]))
-#     end
-#   end
+# Import 2022 Season Lines for all teams
+CsvSeasonLineImporter.import_csv("2022_lines.csv")
 
-# end
+# Enroll all users in 2022 season
+User.all.each do |user|
+  user.enroll_for_season(Season.find_by_active(true))
+end
+
+# Create seeder picks
+Enrollment.all.includes(:season_lines).find_each do |enrollment|
+  enrollment.season_lines.find_each do |season_line|
+    season_line.picks.find_or_create_by!(enrollment: enrollment) do |pick|
+      pick.over = [true, false].sample
+    end
+  end
+
+  enrollment.picks.sample(3).each { |pick| pick.create_lock }
+end

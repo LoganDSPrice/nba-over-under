@@ -15,6 +15,7 @@ class Season < ApplicationRecord
   has_many :picks, through: :enrollments
   has_many :locks, through: :picks
 
+  validates_presence_of :year
   validates_uniqueness_of :year
   validate :single_active_season?, on: :create
 
@@ -30,5 +31,9 @@ class Season < ApplicationRecord
     if Season.where(active: true).count >=1
       errors.add(:active, "Another season is already active")
     end
+  end
+
+  def self.active_season
+    @@active_season ||= find_by_active(true)
   end
 end
