@@ -3,7 +3,6 @@
 # Table name: picks
 #
 #  id             :bigint           not null, primary key
-#  lock           :boolean
 #  over           :boolean
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
