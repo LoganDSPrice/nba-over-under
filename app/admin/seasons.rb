@@ -1,5 +1,5 @@
 ActiveAdmin.register Season do
-  permit_params :year
+  permit_params :year, :active
 
   index do
     selectable_column
@@ -24,6 +24,7 @@ ActiveAdmin.register Season do
   form do |f|
     f.inputs do
       f.input :year
+      f.input :active
     end
     f.actions
   end

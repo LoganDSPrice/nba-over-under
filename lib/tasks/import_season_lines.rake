@@ -13,7 +13,7 @@ task :import_season_lines, [:filename] => :environment do |t, args|
     team = Team.find_by_name(row["Name"])
     season = Season.find_or_create_by(year: row["Season"])
     
-    season_line = SeasonLine.find_or_create_by!(season: season, team: team, line: row["Line"])
+    season_line = SeasonLine.find_or_initialize_by(season: season, team: team)
 
     if season_line.line.nil?
       season_line.update(line: row["Line"])

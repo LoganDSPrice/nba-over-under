@@ -10,6 +10,8 @@ class PicksController < ApplicationController
   end
 
   def update
+    # error clause for if it fails to update
+    
     @pick.update(pick_params)
   end
 

@@ -6,10 +6,19 @@ class Season < ApplicationRecord
   has_many :locks, through: :picks
 
   validates_uniqueness_of :year
+  validate :single_active_season?, on: :create
 
   after_create :create_season_lines
 
   def create_season_lines
     Team.all.each { |team| season_lines.create(team: team)}
+  end
+
+  def single_active_season?
+    return unless active?
+    
+    if Season.where(active: true).count >=1
+      errors.add(:active, "Another season is already active")
+    end
   end
 end

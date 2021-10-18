@@ -4,48 +4,55 @@ AppSetting.create
 users = [
   {
     name:  "Pavan",
-    email: "pavan.sarguru@gmail.com"
+    email: "pavan.sarguru@gmail.com",
+    admin: false
   },
   {
     name:  "Logan",
-    email: "logandsprice@gmail.com"
+    email: "logandsprice@gmail.com",
+    admin: true,
+    password: "password"
   },
   {
     name:  "Peter",
-    email: "peterbutzen@gmail.com"
+    email: "peterbutzen@gmail.com",
+    admin: false
   },
   {
     name:  "Samarth",
-    email: "samarth.bhaskar@gmail.com"
+    email: "samarth.bhaskar@gmail.com",
+    admin: false
   },
   {
     name:  "Piku",
-    email: "pulkitgoel92@gmail.com"
+    email: "pulkitgoel92@gmail.com",
+    admin: false
   },
   {
     name:  "Neal",
-    email: "ndodia2@gmail.com"
+    email: "ndodia2@gmail.com",
+    admin: false
   },
   {
     name:  "Yogen",
-    email: "yogenasher@gmail.com"
+    email: "yogenasher@gmail.com",
+    admin: false
   },
   {
     name:  "Avinash",
-    email: "avinash.sarguru@gmail.com"
+    email: "avinash.sarguru@gmail.com",
+    admin: false
   },
   {
     name:  "Vinayak",
-    email: "vinayak.ishwar@gmail.com"
+    email: "vinayak.ishwar@gmail.com",
+    admin: false
   },
 ]
 
 User.destroy_all
 users.each do |user|
-  new_user = User.new(
-    name:  user[:name],
-    email: user[:email]
-  )
+  new_user = User.new(user)
   if new_user.valid?
     new_user.save
   else
@@ -93,4 +100,3 @@ locks = {
 #   end
 
 # end
-User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

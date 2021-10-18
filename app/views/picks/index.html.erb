@@ -20,7 +20,7 @@
           <%= division_name %>
         </td>
       </tr>
-      <%= render @picks.where(team: division_teams) %>
+      <%= render @picks.where(team: division_teams.map(&:id)) %>
     <% end %>
   <% end %>
   <%#= render @picks %>
