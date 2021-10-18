@@ -10,14 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require_tree .
+
+import Rails from "@rails/ujs"
+import Turbolinks from "turbolinks"
+import * as ActiveStorage from "@rails/activestorage"
+
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
 
 
-// import Rails from '@rails/ujs';
 
 document.addEventListener("turbolinks:load", function() {
   $("body").on("change", ".ajax-input", function() {

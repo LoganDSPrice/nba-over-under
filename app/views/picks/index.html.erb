@@ -20,7 +20,7 @@
           <%= division_name %>
         </td>
       </tr>
-      <%= render @picks.where(team: division_teams.map(&:id)) %>
+      <%= render @picks.includes(:season_line, :team).where(teams: {id: division_teams.map(&:id)}) %>
     <% end %>
   <% end %>
   <%#= render @picks %>
