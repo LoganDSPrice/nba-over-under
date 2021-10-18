@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root "seasons#index"
 
   # resources :users
-  resources :picks, only: [:index, :update]
+  resources :picks, only: [:index, :update] do 
+    resource :lock
+  end
   resources :seasons do 
     resources :season_lines, only: [:index]
   end

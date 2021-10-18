@@ -12,8 +12,9 @@
       <%= f.check_box :over, class: "ajax-input" %>
     </td>
 
-    <td>
-      <%= f.check_box :lock, class: "ajax-input" %>
-    </td>
   <% end %>
+  <% lock = pick.lock || pick.build_lock %>
+  <td >
+    <%= render lock, pick: pick %>
+  </td>
 </tr>

@@ -17,7 +17,7 @@
 #
 
 class Pick < ApplicationRecord
-  has_many  :locks, dependent: :destroy
+  has_one :lock, dependent: :destroy
   belongs_to :enrollment
   belongs_to :season_line
   has_one  :season, through: :enrollment
@@ -25,6 +25,8 @@ class Pick < ApplicationRecord
   has_one  :user, through: :enrollment
 
   validates_uniqueness_of :season_line, scope: :enrollment
+
+  accepts_nested_attributes_for :lock
 
   def score
     if over && team.over?
@@ -48,5 +50,9 @@ class Pick < ApplicationRecord
 
   def team_city
     team.city
+  end
+
+  def locked?
+    !lock.nil? && lock.persisted?
   end
 end

@@ -16,6 +16,10 @@
 #  fk_rails_...  (pick_id => picks.id)
 #
 class Lock < ApplicationRecord
+  model_name.instance_variable_set(:@route_key, 'lock')
+  
+  attr_accessor :should_create
+
   belongs_to :pick
   has_one  :enrollment, through: :pick
 

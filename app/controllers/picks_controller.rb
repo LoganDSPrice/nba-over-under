@@ -3,7 +3,7 @@ class PicksController < ApplicationController
 
   def index
     @user = User.find_by_email("logandsprice@gmail.com")
-    @picks = @user.picks.joins(:team).merge(Team.order(name: :asc))
+    @picks = @user.picks.includes(:season_line, :team).joins(:team).merge(Team.order(name: :asc))
 
     teams_by_conference = Team.all.group_by { |team| team.conference }
     @teams_by_division = teams_by_conference.transform_values { |teams| teams.group_by { |team| team.division } }
@@ -12,7 +12,9 @@ class PicksController < ApplicationController
   def update
     # error clause for if it fails to update
     
-    @pick.update(pick_params)
+    @pick.reload unless @pick.update(pick_params)
+
+    
   end
 
   private
@@ -23,5 +25,7 @@ class PicksController < ApplicationController
   
   def pick_params
     @pick_params ||= params.require(:pick).permit!
+    @pick_params[:lock_attributes] = @pick_params[:lock_attributes].reject {|k,v| v[:should_create] != "1"}
+    @pick_params
   end
 end
