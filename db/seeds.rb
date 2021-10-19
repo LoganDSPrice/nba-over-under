@@ -1,6 +1,7 @@
 require 'csv'
 AppSetting.create
 
+Season.destroy_all
 User.destroy_all
 Team.destroy_all
 Pick.destroy_all
@@ -81,20 +82,20 @@ nba_teams.each do |team|
   )
   new_team.save if new_team.valid?
 end
+# Import 2022 Season Lines for all teams
+CsvSeasonLineImporter.import_csv("2022_lines.csv")
 
 # locks = {
-#   "Logan" => ["Hornets", "Warriors", "Timberwolves"],
-#   "Pavan" => ["Hawks", "Pacers", "Knicks"],
-#   "Peter" => ["Mavericks", "Nuggets", "Heat"],
-#   "Samarth" => ["Bulls", "Rockets", "Bucks"],
+  #   "Logan" => ["Hornets", "Warriors", "Timberwolves"],
+  #   "Pavan" => ["Hawks", "Pacers", "Knicks"],
+  #   "Peter" => ["Mavericks", "Nuggets", "Heat"],
+  #   "Samarth" => ["Bulls", "Rockets", "Bucks"],
 #   "Piku" => ["Bulls", "Thunder", "Wizards"],
 #   "Neal" => ["Pelicans", "Suns", "Kings"],
 #   "Yogen" => ["Celtics", "Cavaliers", "Warriors"],
 #   "Avinash" => ["Hawks", "Pelicans", "Knicks"],
 # }
 
-# Import 2022 Season Lines for all teams
-CsvSeasonLineImporter.import_csv("2022_lines.csv")
 
 # Enroll all users in 2022 season
 User.all.each do |user|
@@ -102,12 +103,8 @@ User.all.each do |user|
 end
 
 # Create seeder picks
-Enrollment.all.includes(:season_lines).find_each do |enrollment|
-  enrollment.season_lines.find_each do |season_line|
-    season_line.picks.find_or_create_by!(enrollment: enrollment) do |pick|
-      pick.over = [true, false].sample
-    end
-  end
+Pick.all.each { |pick| pick.update(over: [true, false].sample)}
 
+Enrollment.all.includes(:picks).find_each do |enrollment|
   enrollment.picks.sample(3).each { |pick| pick.create_lock }
 end

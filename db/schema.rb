@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_170849) do
+ActiveRecord::Schema.define(version: 2021_10_19_010852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_170849) do
   create_table "season_lines", force: :cascade do |t|
     t.bigint "team_id"
     t.bigint "season_id"
-    t.float "projected_wins"
+    t.float "projected_wins", default: 41.0
     t.float "line"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 2021_10_18_170849) do
     t.string "division"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "projected_wins"
   end
 
   create_table "users", force: :cascade do |t|

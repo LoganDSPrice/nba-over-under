@@ -3,7 +3,7 @@ class CreateSeasonLines < ActiveRecord::Migration[5.2]
     create_table :season_lines do |t|
       t.references :team, foreign_key: true
       t.references :season, foreign_key: true
-      t.float :projected_wins
+      t.float :projected_wins, default: 41.0
       t.float :line
 
       t.timestamps

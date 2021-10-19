@@ -41,7 +41,7 @@ class Pick < ApplicationRecord
   end
 
   def correct?
-    over && team.over? || !over && !team.over?
+    over && season_line.over? || !over && !season_line.over?
   end
 
   def team_name

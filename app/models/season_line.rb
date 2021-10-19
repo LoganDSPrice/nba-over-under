@@ -4,7 +4,7 @@
 #
 #  id             :bigint           not null, primary key
 #  line           :float
-#  projected_wins :float
+#  projected_wins :float            default(41.0)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  season_id      :bigint
@@ -27,4 +27,9 @@ class SeasonLine < ApplicationRecord
   has_many :picks, dependent: :destroy
 
   validates_uniqueness_of :team, scope: :season
+
+
+  def over?
+    projected_wins > line
+  end
 end

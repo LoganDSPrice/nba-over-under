@@ -1,3 +1,4 @@
+<% puts "*"*60%>
 <tr>
   <td>
     <%= season_line.team.name %>
@@ -7,10 +8,10 @@
   </td>
     <% season_line.picks.joins(:user).merge(User.order(:name)).each do |pick| %>
       <td>
-        <% class_hash = { true=>"bg-success", false=>"bg-danger", nil=>"d-none" } %>
-        <% badge_text_hash = { true=>"OVER", false=>"UNDER", nil=>"" } %>
-        <span class="badge col-12 <%= class_hash[pick.over] %>"><%= badge_text_hash[pick.over] %></span>
-        <% pick.over %>
+        <% text_color_class_hash = { true=>"text-success", false=>"text-danger", nil=>"text-primary" } %>
+        <% badge_text_hash = { true=>"⇧", false=>"⇩", nil=>"" } %>
+        <% badge_bg_hash = { true=>"bg-success", false=>"bg-danger", nil=>"" } %>
+        <span class="badge col-12 <%#{}= text_color_class_hash[pick.over] %> <%= badge_bg_hash[pick.correct?] %>"><%= badge_text_hash[pick.over] %></span>
       </td>
     <% end %>
 </tr>
