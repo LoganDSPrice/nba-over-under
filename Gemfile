@@ -20,6 +20,7 @@ gem 'devise_invitable', '~> 2.0.0'
 # gem 'cancancan'
 gem 'webpacker'
 gem 'bootstrap'
+gem 'font_awesome5_rails'
 
 group :development, :test do
   gem 'awesome_print'
