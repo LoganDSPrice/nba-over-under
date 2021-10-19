@@ -24,6 +24,9 @@ class Pick < ApplicationRecord
   has_one  :team, through: :season_line
   has_one  :user, through: :enrollment
 
+  after_update :update_season_channel
+  after_touch :update_season_channel
+
   validates_uniqueness_of :season_line, scope: :enrollment
 
   accepts_nested_attributes_for :lock
@@ -54,5 +57,13 @@ class Pick < ApplicationRecord
 
   def locked?
     !lock.nil? && lock.persisted?
+  end
+
+  def update_season_channel
+    pick = ApplicationController.render(
+      partial: "picks/pick",
+      locals: { pick: self }
+    )
+    ActionCable.server.broadcast "season_channel_#{season.id}", { pick: pick, pickId: self.id }
   end
 end

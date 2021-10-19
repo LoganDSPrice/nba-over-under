@@ -27,8 +27,3 @@ ActiveStorage.start()
 //     Rails.fire(this.form, "submit");
 //   });
 // });
-
-
-$(document).on('turbolinks:load', function () {
-
-})

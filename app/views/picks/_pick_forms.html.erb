@@ -1,0 +1,19 @@
+<tr id="pick_<%= pick.id %>_forms">
+  <td></td>
+  <td></td>
+  <td>
+    <%= pick.team.name %>
+  </td>
+  <td>
+    <%= pick.season_line.line %>
+  </td>
+  <td>
+    <div class="col-12">
+      <%= render partial: "/picks/over_under_buttons", locals: {pick: pick} %>
+    </div>
+  </td>
+  <td >
+    <% lock = pick.lock || pick.build_lock %>
+    <%= render lock, pick: pick %>
+  </td>
+</tr>

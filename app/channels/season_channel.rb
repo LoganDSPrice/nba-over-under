@@ -1,6 +1,6 @@
 class SeasonChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "season_channel"
+    stream_from "season_channel_#{params[:season_id]}"
   end
 
   def unsubscribed

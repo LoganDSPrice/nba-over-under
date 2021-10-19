@@ -21,7 +21,7 @@
           <%= division_name %>
         </td>
       </tr>
-      <%= render @picks.where(teams: {id: division_teams.map(&:id)}) %>
+      <%= render partial: "pick_forms", collection: @picks.where(teams: {id: division_teams.map(&:id)}), as: :pick %>
     <% end %>
   <% end %>
 </table>

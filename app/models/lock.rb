@@ -20,7 +20,7 @@ class Lock < ApplicationRecord
   
   attr_accessor :should_create
 
-  belongs_to :pick
+  belongs_to :pick, touch: true
   has_one  :enrollment, through: :pick
 
   validate :locks_count_within_limit, on: :create

@@ -21,6 +21,7 @@ gem 'devise_invitable', '~> 2.0.0'
 gem 'webpacker'
 gem 'bootstrap'
 gem 'font_awesome5_rails'
+gem 'redis'
 
 group :development, :test do
   gem 'awesome_print'
