@@ -1,0 +1,10 @@
+<table class="table">
+  <tr>
+    <th>Team</th>
+    <th>Line</th>
+    <% @enrollments.each do |enrollment| %>
+      <th><%= enrollment.user.name %></th>
+    <% end %>
+  </tr>
+  <%= render partial: "season_line", collection: @season_lines %>
+</table>

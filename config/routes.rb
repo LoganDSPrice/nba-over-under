@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root "seasons#index"
 
   resource :my_picks, only: :show
+  resource :all_picks, only: :show
   
   resources :picks, only: [:update] do 
     resource :lock

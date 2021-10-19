@@ -1,0 +1,16 @@
+<tr>
+  <td>
+    <%= season_line.team.name %>
+  </td>
+  <td>
+    <%= season_line.line %>
+  </td>
+    <% season_line.picks.joins(:user).merge(User.order(:name)).each do |pick| %>
+      <td>
+        <% class_hash = { true=>"bg-success", false=>"bg-danger", nil=>"d-none" } %>
+        <% badge_text_hash = { true=>"OVER", false=>"UNDER", nil=>"" } %>
+        <span class="badge col-12 <%= class_hash[pick.over] %>"><%= badge_text_hash[pick.over] %></span>
+        <% pick.over %>
+      </td>
+    <% end %>
+</tr>
