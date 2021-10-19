@@ -44,6 +44,7 @@ class Pick < ApplicationRecord
   end
 
   def correct?
+    return if over.nil?
     over && season_line.over? || !over && !season_line.over?
   end
 
