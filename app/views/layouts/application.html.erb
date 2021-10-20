@@ -13,8 +13,9 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <%= content_tag("p", class: "notice") { notice } if notice %>
+        <%= content_tag("p", class: "alert") { alert } if alert %>
+      
         <div class="col-sm-12">
           <%= yield %>
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>

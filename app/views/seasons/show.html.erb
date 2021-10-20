@@ -1,18 +1,22 @@
-<div class="col-12">
-  <div class="row fs-4 d-flex align-items-center sticky-top bg-primary">
-    <div class="col-1 d-flex justify-content-center">Team</div>
-    <div class="col-1 d-flex justify-content-center">Line</div>
-    <div class="col-1 d-flex justify-content-center">Win Pace</div>
-    <div class="col-9">
-      <div class="row">
-        <% @enrollments.each do |enrollment| %>
-          <div id="<%= enrollment.user.name.downcase %>" class="col overflow-hidden d-flex justify-content-center"><%= enrollment.user.name %></div>
-        <% end %>
-      </div>
+<div class="row fs-4 d-flex align-items-center sticky-top bg-light">
+  <div class="col-4">
+    <div class="row">
+      <div class="col-4 d-flex justify-content-center">Team</div>
+      <div class="col-4 d-flex justify-content-center">Line</div>
+      <div class="col-4 d-flex justify-content-center">Win Pace</div>
+      
+    </div>
+    
+  </div>
+  <div class="col-8">
+    <div class="row">
+      <% @enrollments.each do |enrollment| %>
+        <div id="<%= enrollment.user.name.downcase %>" class="col overflow-hidden d-flex justify-content-center"><%= enrollment.user.name %></div>
+      <% end %>
     </div>
   </div>
-  <%= render @season_lines %>
 </div>
+<%= render @season_lines %>
 <div id="season-id" data-season-id="<%= active_season.id %>">
   <h1>Season ID <%= active_season.id %></h1>
 </div>
