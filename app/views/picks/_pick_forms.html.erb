@@ -1,8 +1,8 @@
 <div class="row" id="pick_<%= pick.id %>_forms">
-  <div class="offset-1 col-4">
+  <div class="offset-2 col-3">
     <div class="row">
       <% season_line = pick.season_line %>
-      <%= render partial: "/shared/team_info", locals: { season_line: season_line } %>
+      <%= render partial: "/shared/team_info", locals: { season_line: season_line, omit_pace: (omit_pace || false) } %>
     </div>
   </div>
   <div class="col-3 d-flex align-items-center ">

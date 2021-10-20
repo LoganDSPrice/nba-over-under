@@ -1,1 +1,1 @@
-$("#pick_<%= @pick.id %>_forms").replaceWith("<%= j render partial: "pick_forms", locals: { pick: @pick } %>");
+$("#pick_<%= @pick.id %>_forms").replaceWith("<%= j render partial: "pick_forms", locals: { pick: @pick, omit_pace: true } %>");
