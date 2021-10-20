@@ -1,19 +1,16 @@
-<tr id="pick_<%= pick.id %>_forms">
-  <td></td>
-  <td></td>
-  <td>
-    <%= pick.team.name %>
-  </td>
-  <td>
-    <%= pick.season_line.line %>
-  </td>
-  <td>
-    <div class="col-12">
-      <%= render partial: "/picks/over_under_buttons", locals: {pick: pick} %>
+<div class="row" id="pick_<%= pick.id %>_forms">
+  <div class="offset-1 col-4">
+    <div class="row">
+      <% season_line = pick.season_line %>
+      <%= render partial: "/shared/team_info", locals: { season_line: season_line } %>
     </div>
-  </td>
-  <td >
-    <% lock = pick.lock || pick.build_lock %>
-    <%= render lock, pick: pick %>
-  </td>
-</tr>
+  </div>
+  <div class="col-3 d-flex align-items-center ">
+    <%= render partial: "/picks/over_under_buttons", locals: { pick: pick } %>
+  </div>
+  <div class="col-3 d-flex align-items-center">
+    
+        <% lock = pick.lock || pick.build_lock %>
+        <%= render lock, pick: pick %>
+  </div>
+</div>

@@ -1,23 +1,17 @@
 <div class="row my-2 mx-0">
-  <div class="col-4 " style="min-height: 100%; max-height: 100%; " >
-    <div class="row m-1 align-items-center" style="border-radius: 15px; <%=season_line.team.style%>">
-      <div class="fs-2 col-4 my-1">
-        <div class="ratio ratio-1x1">
-          <%= season_line.team.name %>
-          <%#= image_tag season_line.team.img_url, style: "max-height: 100%; width: auto;" %>
+  <div class="col-4">
+    <div class="row">
+      <%= render partial: "/shared/team_info", locals: { season_line: season_line } %>
+    </div>
+  </div>
+  <div class="col-8" style="min-height: 100%;">
+    <div class="row h-100 d-flex align-items-center">
+      <div class="col ">
+        <div class="row">
+          <% picks = season_line.picks.includes(:lock).joins(:user).merge(User.order(:name))%>
+          <%= render picks %>
         </div>
       </div>
-      <div class="fs-2 col-4 my-1 d-flex justify-content-center"><%= season_line.line %></div>
-      <div class="fs-2 col-4 my-1 d-flex justify-content-center"><%= season_line.projected_wins %></div>
-      
-    </div>
-    
-  </div>
-  <div class="col-8">
-    <div class="row">
-      <% picks = season_line.picks.includes(:lock).joins(:user).merge(User.order(:name))%>
-      <%= render picks %>
     </div>
   </div>
 </div>
-

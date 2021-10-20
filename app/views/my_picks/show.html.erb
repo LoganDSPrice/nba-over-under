@@ -1,26 +1,23 @@
-<table class="table">
-  <tr>
-    <th>Conference</th>
-    <th>Division</th>
-    <th>Team</th>
-    <th>Line</th>
-    <th>Over?</th>
-    <th>Locked?</th>
-  </tr>
-  <% @teams_by_division.each do |conference, division_hash| %>
-    <tr>
-      <td colspan="6">
-        <%= conference %>
-      </td>
-    </tr>
-    <% division_hash.each do |division_name, division_teams| %>
-      <tr>
-        <td></td>
-        <td colspan="5">
-          <%= division_name %>
-        </td>
-      </tr>
-      <%= render partial: "/picks/pick_forms", collection: @picks.where(teams: {id: division_teams.map(&:id)}), as: :pick %>
-    <% end %>
+<div class="row">
+  <div class="col">Conference</div>
+  <div class="col">Division</div>
+  <div class="col">Team</div>
+  <div class="col">Line</div>
+  <div class="col">Over?</div>
+  <div class="col">Locked?</div>
+</div>
+<% @teams_by_division.each do |conference, division_hash| %>
+  <div class="row">
+    <div class="col-12 fs-1">
+      <%= conference %>
+    </div>
+  </div>
+  <% division_hash.each do |division_name, division_teams| %>
+    <div class="row">
+      <div class="offset-1 col-11 fs-2">
+        <%= division_name %>
+      </div>
+    </div>
+    <%= render partial: "/picks/pick_forms", collection: @picks.where(teams: {id: division_teams.map(&:id)}), as: :pick %>
   <% end %>
-</table>
+<% end %>
