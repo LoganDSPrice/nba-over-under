@@ -38,4 +38,8 @@ class Enrollment < ApplicationRecord
       picks.create(season_line: season_line)
     end
   end
+
+  def season_score
+    picks.includes(:season_line, :lock).map(&:score).sum
+  end
 end
