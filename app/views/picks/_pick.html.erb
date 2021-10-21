@@ -1,5 +1,6 @@
 <div class="col d-flex flex-column" id="<%= dom_id(pick) %>" >
-  <% div_ordering = pick.over ? { pick: 1, result_icon: 2 } : { pick: 2, result_icon: 1 } %>
+  <%# div_ordering = pick.over ? { pick: 1, result_icon: 2 } : { pick: 2, result_icon: 1 } %>
+  <% div_ordering = { pick: 1, result_icon: 2 } %>
   <div class="row order-<%= div_ordering[:pick] %>">
     <div class="col m-1 p-0 ratio ratio-1x1 ">
       <% vertical_alignment = { true => "start", false => "end", nil => "center"}[pick.over] %>
@@ -11,24 +12,31 @@
         "border-3",
         "border-dark",
       ] %>
-      <% icon_classes = { true => "fas fa-3x fa-chevron-double-up ", false => " fas fa-3x fa-chevron-double-down ", nil => "fal fa-3x fa-question" } %>
+      <% icon_classes_hash = { true => "fas fa-3x fa-chevron-double-up", false => " fas fa-3x fa-chevron-double-down", nil => "fal fa-3x fa-question" } %>
+      <% icon_classes = icon_classes_hash[pick.over] + (pick.correct? ? " text-success" : " text-danger") %>
       <div class="<%= cell_classes.join(" ") %>" style="border-radius: 15px;">
-        <i class="<%= icon_classes[pick.over] %> "></i>
-        <% if pick.locked? %>
-          <div class="position-absolute bottom-0 end-0 p-1 text-warning">
-            <%= fa_icon("fad 2x lock-alt") %>
-          </div>
-        <% end %>
+        <i class="<%= icon_classes %> "></i>
       </div>
     </div>
   </div>
   <div class="row order-<%= div_ordering[:result_icon] %>">
-    <div class="col d-flex justify-content-center">
-      <% if pick.correct? %>
+    <div class="col-6 fs-4 d-flex justify-content-center">
+      <!-- <% if pick.correct? %>
         <i class="fas fa-2x fa-check text-success"></i>
       <% else %>
         <i class="fas fa-2x fa-times text-danger"></i>
-      <% end %>
+      <% end %> -->
+      +1
+
+
+    </div>
+    <div class="col-6">
+        <% if pick.locked? %>
+          <div class="text-warning">
+            <%= fa_icon("fad 2x lock-alt") %>
+          </div>
+        <% end %>
+      
     </div>
   </div>
 </div>
