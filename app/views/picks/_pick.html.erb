@@ -1,16 +1,17 @@
-<div class="col" id="<%= dom_id(pick) %>" >
-  <div class="row">
+<div class="col d-flex flex-column" id="<%= dom_id(pick) %>" >
+  <% div_ordering = pick.over ? { pick: 1, result_icon: 2 } : { pick: 2, result_icon: 1 } %>
+  <div class="row order-<%= div_ordering[:pick] %>">
     <div class="col m-1 p-0 ratio ratio-1x1 ">
+      <% vertical_alignment = { true => "start", false => "end", nil => "center"}[pick.over] %>
       <% cell_classes = [
         "d-flex",
-    "justify-content-center",
-    "align-items-center",
-    "border",
-    "border-3",
-    "border-dark",
-  ] %>
-      <% cell_classes %>
-      <% icon_classes = { true => " fas fa-3x fa-chevron-double-up ", false => " fas fa-3x fa-chevron-double-down ", nil => "fal fa-3x fa-question" } %>
+        "justify-content-center",
+        "align-items-center",
+        "border",
+        "border-3",
+        "border-dark",
+      ] %>
+      <% icon_classes = { true => "fas fa-3x fa-chevron-double-up ", false => " fas fa-3x fa-chevron-double-down ", nil => "fal fa-3x fa-question" } %>
       <div class="<%= cell_classes.join(" ") %>" style="border-radius: 15px;">
         <i class="<%= icon_classes[pick.over] %> "></i>
         <% if pick.locked? %>
@@ -21,7 +22,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row order-<%= div_ordering[:result_icon] %>">
     <div class="col d-flex justify-content-center">
       <% if pick.correct? %>
         <i class="fas fa-2x fa-check text-success"></i>
