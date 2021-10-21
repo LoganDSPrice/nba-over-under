@@ -25,7 +25,9 @@ class Enrollment < ApplicationRecord
   has_many :season_lines, through: :season
   has_many  :picks, dependent: :destroy
   has_many :locks, through: :picks
-
+  has_one :draft, through: :season
+  has_one :draft_active_in, class_name: "Draft", foreign_key: :active_drafter_id
+  
   validates_uniqueness_of :user, scope: :season
 
   after_create :create_picks

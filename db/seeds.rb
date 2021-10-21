@@ -18,43 +18,58 @@ users = [
   {
     name:  "Pavan",
     email: "pavan.sarguru@gmail.com",
-    admin: false
+    admin: false,
+    password: "password"
   },
   {
     name:  "Peter",
     email: "peterbutzen@gmail.com",
-    admin: false
+    admin: false,
+    password: "password"
   },
   {
     name:  "Samarth",
     email: "samarth.bhaskar@gmail.com",
-    admin: false
+    admin: false,
+    password: "password"
   },
   {
     name:  "Piku",
     email: "pulkitgoel92@gmail.com",
-    admin: false
+    admin: false,
+    password: "password"
   },
   {
     name:  "Neal",
     email: "ndodia2@gmail.com",
-    admin: false
+    admin: false,
+    password: "password"
   },
   {
     name:  "Yogen",
     email: "yogenasher@gmail.com",
-    admin: false
+    admin: false,
+    password: "password"
   },
   {
     name:  "Avinash",
     email: "avinash.sarguru@gmail.com",
-    admin: false
+    admin: false,
+    password: "password"
   },
   {
     name:  "Vinayak",
     email: "vinayak.ishwar@gmail.com",
-    admin: false
+    admin: false,
+    password: "password"
   },
+  {
+    name:  "Prateek",
+    email: "PrateekSingh01@gmail.com",
+    admin: false,
+    password: "password"
+  },
+  
 ]
 
 users.each do |user|
@@ -66,7 +81,7 @@ users.each do |user|
   end
 end
 
-url = "http://data.nba.net/10s/prod/v2/2019/teams.json"
+url = "http://data.nba.net/10s/prod/v2/2021/teams.json"
 response = HTTParty.get(url)
 parsed = response.parsed_response
 nba_teams = parsed["league"]["standard"].select {|t| t["isNBAFranchise"] == true }

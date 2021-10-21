@@ -19,10 +19,12 @@ task :update_nba_standings => :environment do
   current_team_standings = response["league"]["standard"]["teams"]
 
   current_team_standings.each do |team|
-    team_to_update = Team.find_by(nba_id: team["teamId"])
-    team_to_update.update_attributes(
+    nba_team = Team.find_by(nba_id: team["teamId"])
+    season_line_to_update = SeasonLine.find_by(team: nba_team, season: Season.active_season)
+
+    season_line_to_update.update(
       projected_wins: team["winPct"].to_f * 82
     )
-    puts "#{team_to_update.name} updated!"
+    puts "#{nba_team.name} updated with #{season_line_to_update.projected_wins} projected wins!"
   end
 end

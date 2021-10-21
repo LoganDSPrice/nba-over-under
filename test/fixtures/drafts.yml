@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: drafts
+#
+#  id                :bigint           not null, primary key
+#  active            :boolean          default(FALSE)
+#  draft_order       :jsonb
+#  started_at        :datetime
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  active_drafter_id :integer
+#  season_id         :bigint           not null
+#
+# Indexes
+#
+#  index_drafts_on_season_id  (season_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (season_id => seasons.id)
+#
+
+one:
+  active: false
+  season: one
+  started_at: 2021-10-20 14:51:22
+  draft_order: 
+
+two:
+  active: false
+  season: two
+  started_at: 2021-10-20 14:51:22
+  draft_order: 

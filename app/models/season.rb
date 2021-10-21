@@ -11,6 +11,7 @@
 class Season < ApplicationRecord
   has_many  :enrollments, dependent: :destroy
   has_many  :season_lines, dependent: :destroy
+  has_one :draft, dependent: :destroy
   has_many :enrolled_users, through: :enrollments, source: :user
   has_many :picks, through: :enrollments
   has_many :locks, through: :picks
@@ -20,6 +21,7 @@ class Season < ApplicationRecord
   validate :single_active_season?, on: :create
 
   after_create :create_season_lines
+  after_create :create_draft
 
   def create_season_lines
     Team.all.each { |team| season_lines.create(team: team)}
@@ -36,4 +38,5 @@ class Season < ApplicationRecord
   def self.active_season
     @@active_season ||= find_by_active(true)
   end
+
 end
