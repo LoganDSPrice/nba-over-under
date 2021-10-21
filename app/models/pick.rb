@@ -32,14 +32,12 @@ class Pick < ApplicationRecord
   accepts_nested_attributes_for :lock
 
   def score
-    if over && team.over?
-      lock ? 2 : 1
-    elsif !over && !team.over?
-      lock ? 2 : 1
+    if over == season_line.over?
+      locked? ? 2 : 1
     elsif lock
-      -1
+      -2
     else
-      0
+    -1
     end
   end
 
