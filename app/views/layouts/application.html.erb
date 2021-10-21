@@ -4,18 +4,48 @@
     <title>NbaOverUnder</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://kit.fontawesome.com/9091341b10.js" %>
   </head>
-
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <div class="row d-flex align-items-center">
+              <div class="col-1">
+                <a href="/">
+                  <%= image_tag "https://pngimg.com/uploads/nba/nba_PNG20.png", class: "img-fluid" %>
+                </a>
+              </div>
+              <div class="col-11">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="navbar-brand nav-link" href="#">Over/Under Madness</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/">Season Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/my_picks">My Picks</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
     <div class="container-fluid">
       <div class="row">
         <%= content_tag("p", class: "notice") { notice } if notice %>
         <%= content_tag("p", class: "alert") { alert } if alert %>
-      
         <div class="col-sm-12">
           <%= yield %>
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
