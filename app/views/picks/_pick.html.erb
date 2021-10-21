@@ -21,14 +21,11 @@
   </div>
   <div class="row order-<%= div_ordering[:result_icon] %>">
     <div class="col-6 fs-4 d-flex justify-content-center">
-      <!-- <% if pick.correct? %>
-        <i class="fas fa-2x fa-check text-success"></i>
-      <% else %>
-        <i class="fas fa-2x fa-times text-danger"></i>
-      <% end %> -->
-      +1
+      <% score = pick.score %>
+      <% modifier = "+" if score.positive? %>
+      <%= "#{ modifier }#{pick.score}" %>
 
-
+  
     </div>
     <div class="col-6">
         <% if pick.locked? %>
