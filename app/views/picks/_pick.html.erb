@@ -1,24 +1,33 @@
-<div id="<%= dom_id(pick) %>" class="col m-1 p-0 ratio ratio-1x1 ">
-  <% pick_is_correct = pick.correct? %>
-  <% cell_color_hash = { true => " bg-success ", false => " bg-danger ", nil => " bg-secondary " }%>
-  <% cell_color = cell_color_hash[pick.correct?] %>
-  <% cell_classes = [
-    "d-flex",
+<div class="col" id="<%= dom_id(pick) %>" >
+  <div class="row">
+    <div class="col m-1 p-0 ratio ratio-1x1 ">
+      <% cell_classes = [
+        "d-flex",
     "justify-content-center",
     "align-items-center",
     "border",
     "border-3",
     "border-dark",
   ] %>
-  <% cell_classes << cell_color %>
-  <% icon_classes = { true => " fas fa-3x fa-arrow-alt-circle-up ", false => " far fa-3x fa-arrow-alt-circle-down ", nil => "fal fa-3x fa-question" } %>
-  <div class="<%= cell_classes.join(" ") %>" style="border-radius: 15px;">
-    <i class="<%= icon_classes[pick.over] %> "></i>
-    <% if pick.locked? %>
-      <div class="position-absolute bottom-0 end-0 p-1 text-warning">
-        <%= fa_icon("fad 2x lock-alt") %>
+      <% cell_classes %>
+      <% icon_classes = { true => " fas fa-3x fa-chevron-double-up ", false => " fas fa-3x fa-chevron-double-down ", nil => "fal fa-3x fa-question" } %>
+      <div class="<%= cell_classes.join(" ") %>" style="border-radius: 15px;">
+        <i class="<%= icon_classes[pick.over] %> "></i>
+        <% if pick.locked? %>
+          <div class="position-absolute bottom-0 end-0 p-1 text-warning">
+            <%= fa_icon("fad 2x lock-alt") %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <% if pick.correct? %>
+        <i class="fas fa-2x fa-check text-success"></i>
+      <% else %>
+        <i class="fas fa-2x fa-times text-danger"></i>
+      <% end %>
+    </div>
   </div>
 </div>
-
