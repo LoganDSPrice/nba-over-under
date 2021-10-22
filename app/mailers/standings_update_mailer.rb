@@ -1,11 +1,11 @@
 class StandingsUpdateMailer < ApplicationMailer
   def send_update_mailer(emails)
     picks_hash = {}
-    User.eager_load(:picks).eager_load(:teams).all.each do |user|
-      picks_hash[user.name] = {}
+    Enrollment.includes(:picks, :season_lines, :user).each do |enrollment|
+      picks_hash[enrollment.user.name] = {}
 
-      user.picks.each do |pick|
-        picks_hash[user.name][pick.team.name] = pick.score
+      enrollment.picks.each do |pick|
+        picks_hash[enrollment.user.name][pick.team.name] = pick.score
       end
     end
 
@@ -16,7 +16,7 @@ class StandingsUpdateMailer < ApplicationMailer
 
     @final_hash = {}
     @final_hash["picks"] = picks_hash
-    @final_hash["standings"] = sort_standings(standings)
+    @final_hash["standings"] = standings.sort_by {|_key, value| value}.reverse.to_h
 
     emails.nil? ? emails = User.all.pluck(:email) : emails
 
