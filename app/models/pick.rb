@@ -33,11 +33,11 @@ class Pick < ApplicationRecord
 
   def score
     if over == season_line.over?
-      locked? ? 2 : 1
+      locked? ? ENV["PICK_CORRECT_LOCKED"].to_i : ENV["PICK_CORRECT"].to_i
     elsif lock
-      -2
+      ENV["PICK_INCORRECT_LOCKED"].to_i
     else
-    -1
+      ENV["PICK_INCORRECT"].to_i
     end
   end
 
