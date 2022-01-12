@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_195122) do
+ActiveRecord::Schema.define(version: 2022_01_12_211153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(version: 2021_10_20_195122) do
     t.float "line"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "wins", default: 0
+    t.integer "losses", default: 0
     t.index ["season_id"], name: "index_season_lines_on_season_id"
     t.index ["team_id", "season_id"], name: "index_season_lines_on_team_id_and_season_id", unique: true
     t.index ["team_id"], name: "index_season_lines_on_team_id"

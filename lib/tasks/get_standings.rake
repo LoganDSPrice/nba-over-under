@@ -23,7 +23,9 @@ task :update_nba_standings => :environment do
     season_line_to_update = SeasonLine.find_by(team: nba_team, season: Season.active_season)
 
     season_line_to_update.update(
-      projected_wins: team["winPct"].to_f * 82
+      projected_wins: (team["winPct"].to_f * 82),
+      wins: team["win"],
+      losses: team["loss"],
     )
     puts "#{nba_team.name} updated with #{season_line_to_update.projected_wins} projected wins!"
   end
