@@ -9,6 +9,5 @@ task :import_season_lines, [:filename] => :environment do |t, args|
   args = opts.order!(ARGV) {}
   opts.parse!(args)
 
-
   CsvSeasonLineImporter.import_csv(options[:filename])
 end

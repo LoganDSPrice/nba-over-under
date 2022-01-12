@@ -15,15 +15,25 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+// import 'bootstrap'
+
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+require("bootstrap")
+import "../stylesheets/application";
+document.addEventListener("turbolinks:load", function() {
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="popover"]').popover()
+    })
+})
 
 
-// document.addEventListener("turbolinks:load", function() {
-//   $("body").on("change", ".ajax-input", function() {
-//     Rails.fire(this.form, "submit");
+// document.addEventListener("turbolinks:load", function () {
+//   $(".alert").delay(4000).slideUp(200, function () {
+//     $(this).alert('close');
 //   });
 // });

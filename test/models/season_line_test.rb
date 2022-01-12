@@ -4,7 +4,9 @@
 #
 #  id             :bigint           not null, primary key
 #  line           :float
+#  losses         :integer          default(0)
 #  projected_wins :float            default(41.0)
+#  wins           :integer          default(0)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  season_id      :bigint
