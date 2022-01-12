@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include ApplicationHelper
   
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
 
   def index
