@@ -9,18 +9,18 @@
     </div>
     <div class="<%= omit_pace ? "col-6" : "col-8" %>">
       <div class="row">
-        <div class="fs-2 col my-1 d-flex justify-content-center"><%= season_line.line %></div>
+        <div class="fs-3 col my-1 d-flex justify-content-center"><%= season_line.line %></div>
         <% unless omit_pace %>
-          <div class="fs-2 col my-1 d-flex justify-content-center"><%= season_line.projected_wins.round(1) %></div>
+          <div class="fs-3 col my-1 d-flex justify-content-center"><%= season_line.projected_wins.round(1) %></div>
         <% end %>
       </div>
       <div class="row">
-        <div class="fs-3 col text-center">
+        <div class="fs-4 col text-center">
           <%= season_line.team.city %> <%= season_line.team.name %>
         </div>
       </div>
       <div class="row">
-        <div class="fs-4 col text-center">
+        <div class="fs-5 col text-center">
           (<%= season_line.wins %> - <%= season_line.losses %>)
         </div>
       </div>
