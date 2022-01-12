@@ -19,7 +19,6 @@ gem 'devise'
 gem 'devise_invitable', '~> 2.0.0'
 # gem 'cancancan'
 gem 'webpacker'
-gem 'bootstrap'
 gem 'font_awesome5_rails'
 gem 'redis'
 
