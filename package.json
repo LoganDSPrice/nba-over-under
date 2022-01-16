@@ -1,9 +1,6 @@
 {
   "name": "nba-over-under",
   "private": true,
-  "engines": {
-    "node": "14.17.0"
-  },
   "dependencies": {
     "@popperjs/core": "^2.10.2",
     "@rails/actioncable": "^6.1.4-1",
