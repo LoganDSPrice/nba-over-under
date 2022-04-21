@@ -15,7 +15,7 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-// import 'bootstrap'
+import 'bootstrap'
 
 
 Rails.start()
@@ -23,12 +23,13 @@ Turbolinks.start()
 ActiveStorage.start()
 
 require("bootstrap")
+require("@popperjs/core")
 import "../stylesheets/application";
 document.addEventListener("turbolinks:load", function() {
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-        $('[data-toggle="popover"]').popover()
-    })
+    // $(function () {
+    //     $('[data-toggle="tooltip"]').tooltip()
+    //     $('[data-toggle="popover"]').popover()
+    // })
 })
 
 
@@ -37,3 +38,10 @@ document.addEventListener("turbolinks:load", function() {
 //     $(this).alert('close');
 //   });
 // });
+
+
+
+
+
+// The stylesheet location we created earlier
+require("../stylesheets/application.scss")
