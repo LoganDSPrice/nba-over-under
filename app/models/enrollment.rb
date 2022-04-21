@@ -33,7 +33,7 @@ class Enrollment < ApplicationRecord
   after_create :create_picks
 
 
-  def create_picks
+  def create_picks # I don't like this. I don't remember why I decided Picks should exist upon enrollment...
     season.season_lines.each do |season_line|
       picks.create(season_line: season_line)
     end

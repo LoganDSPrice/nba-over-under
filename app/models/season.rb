@@ -18,7 +18,7 @@ class Season < ApplicationRecord
 
   validates_presence_of :year
   validates_uniqueness_of :year
-  validate :single_active_season?, on: :create
+  validate :single_active_season?
 
   after_create :create_season_lines
   after_create :create_draft
@@ -38,5 +38,14 @@ class Season < ApplicationRecord
   def self.active_season
     @@active_season ||= find_by_active(true)
   end
+
+  # def self.setup_new_season(user_emails=User.all.pluck(:email), year:)
+  #   ActiveRecord::Base.transaction do
+  #     Season.active_season&.update(active: false)
+  #     new_season = Season.create(year: year)
+  
+  #     User.where(email: user_emails).each {|user| user.enroll_for_season(new_season)}
+  #   end
+  # end
 
 end
