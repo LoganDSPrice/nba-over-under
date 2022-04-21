@@ -119,7 +119,3 @@ end
 
 # Create seeder picks
 Pick.all.each { |pick| pick.update(over: [true, false].sample)}
-
-Enrollment.all.includes(:picks).find_each do |enrollment|
-  enrollment.picks.sample(3).each { |pick| pick.create_lock }
-end
