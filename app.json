@@ -1,5 +1,5 @@
 {
-  "stack": "heroku-22",
+  "stack": "heroku-20",
   "name": "nba-over-under",
   "scripts": {
     "postdeploy":"bundle exec rails db:migrate && bundle exec rails db:seed"
