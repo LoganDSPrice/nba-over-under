@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 2022_01_12_211153) do
     t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_211153) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
