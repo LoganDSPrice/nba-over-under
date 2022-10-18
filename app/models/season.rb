@@ -9,9 +9,9 @@
 #  updated_at :datetime         not null
 #
 class Season < ApplicationRecord
-  has_many  :enrollments, dependent: :destroy
+  has_many :leagues
+  has_many  :enrollments, through: :leagues
   has_many  :season_lines, dependent: :destroy
-  has_one :draft, dependent: :destroy
   has_many :enrolled_users, through: :enrollments, source: :user
   has_many :picks, through: :enrollments
   has_many :locks, through: :picks
@@ -21,7 +21,6 @@ class Season < ApplicationRecord
   validate :single_active_season?
 
   after_create :create_season_lines
-  after_create :create_draft
 
   def create_season_lines
     Team.all.each { |team| season_lines.create(team: team)}

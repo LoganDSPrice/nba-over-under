@@ -98,7 +98,7 @@ nba_teams.each do |team|
   new_team.save if new_team.valid?
 end
 # Import 2022 Season Lines for all teams
-CsvSeasonLineImporter.import_csv("2022_lines.csv")
+# CsvSeasonLineImporter.import_csv("2022_lines.csv")
 
 # locks = {
   #   "Logan" => ["Hornets", "Warriors", "Timberwolves"],
@@ -113,9 +113,9 @@ CsvSeasonLineImporter.import_csv("2022_lines.csv")
 
 
 # Enroll all users in 2022 season
-User.all.each do |user|
-  user.enroll_for_season(Season.find_by_active(true))
-end
+# User.all.each do |user|
+#   user.enroll_for_season(Season.find_by_active(true))
+# end
 
 # Create seeder picks
-Pick.all.each { |pick| pick.update(over: [true, false].sample)}
+# Pick.all.each { |pick| pick.update(over: [true, false].sample)}
