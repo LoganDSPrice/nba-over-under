@@ -5,7 +5,7 @@ ActiveAdmin.register League do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :active, :season_id, :started_at, :draft_order, :active_drafter_id
+  permit_params :active, :season_id, :started_at, :draft_order, :active_drafter_id, :drafting_enabled
   #
   # or
   #

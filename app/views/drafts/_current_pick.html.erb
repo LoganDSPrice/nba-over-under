@@ -1,0 +1,5 @@
+<% if current_user == @current_pick.user %>
+  <%= render "active_pick_for_user" %>
+<% else %>
+  <%= render "inactive_pick_for_user" %>
+<% end %>

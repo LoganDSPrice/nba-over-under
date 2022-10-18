@@ -1,0 +1,9 @@
+<div class="row mt-5">
+  <div class="col d-flex flex-column justify-content-center align-items-center">
+    <h1>On the Clock</h1>
+    <p>
+      <%= @current_pick.user.name %>
+    </p>
+    <%= render "shared/team_info", season_line: @current_pick.season_line, omit_pace: true %>
+  </div>  
+</div>
