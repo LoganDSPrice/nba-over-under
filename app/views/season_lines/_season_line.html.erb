@@ -9,9 +9,11 @@
       <div class="col ">
         <div class="row ">
           <% picks = season_line.picks.includes(:lock).joins(:user).order(:id) %>
+          <% picks = picks.reverse if @round_counter.even? %>
           <%= render picks %>
         </div>
       </div>
     </div>
   </div>
 </div>
+<% @round_counter += 1 %>
