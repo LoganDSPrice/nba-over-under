@@ -11,10 +11,10 @@
     <p>This is your weekly generated Xanadu NBA Over/Under standings update.  As a reminder our scoring is: </p>
 
     <ul style="list-style-type: none">
-      <li>-2 for an locked incorrect pick</li>
-      <li>-1 for a incorrect pick</li>
-      <li>+1 for a correct pick</li>
-      <li>+2 for a locked correct pick</li>
+      <li><%= ENV["PICK_INCORRECT_LOCKED"] %> for an locked incorrect pick</li>
+      <li><%= ENV["PICK_INCORRECT"] %> for a incorrect pick</li>
+      <li><%= ENV["PICK_CORRECT"] %> for a correct pick</li>
+      <li><%= ENV["PICK_CORRECT_LOCKED"] %> for a locked correct pick</li>
     </ul>
 
     <h3 style="text-decoration: underline">Current Standings</h3>
