@@ -33,4 +33,16 @@ class SeasonLine < ApplicationRecord
   def over?
     projected_wins > line
   end
+
+  def calculate_projected_wins
+    win_pct * 82
+  end
+
+  def win_pct
+    wins/games_played.to_f
+  end
+
+  def games_played
+    wins + losses
+  end
 end
