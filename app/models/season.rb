@@ -38,6 +38,10 @@ class Season < ApplicationRecord
     @@active_season ||= find_by_active(true)
   end
 
+  def self.years_of_active_season
+    "#{active_season.year - 1}-#{active_season.year}"
+  end
+
   # def self.setup_new_season(user_emails=User.all.pluck(:email), year:)
   #   ActiveRecord::Base.transaction do
   #     Season.active_season&.update(active: false)
