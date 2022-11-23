@@ -5,18 +5,18 @@
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  season_id  :bigint
+#  league_id  :bigint
 #  user_id    :bigint
 #
 # Indexes
 #
-#  index_enrollments_on_season_id              (season_id)
+#  index_enrollments_on_league_id              (league_id)
 #  index_enrollments_on_user_id                (user_id)
-#  index_enrollments_on_user_id_and_season_id  (user_id,season_id) UNIQUE
+#  index_enrollments_on_user_id_and_league_id  (user_id,league_id) UNIQUE
 #
 # Foreign Keys
 #
-#  fk_rails_...  (season_id => seasons.id)
+#  fk_rails_...  (league_id => leagues.id)
 #  fk_rails_...  (user_id => users.id)
 #
 require 'test_helper'

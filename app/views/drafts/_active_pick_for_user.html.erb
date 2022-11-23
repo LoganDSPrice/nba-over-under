@@ -1,0 +1,9 @@
+<div class="row mt-5">
+  <div class="col d-flex flex-column justify-content-center align-items-center">
+    <h1>It's your pick!</h1>
+    <div class="col d-flex flex-column align-items-center ">
+      <%= render partial: "/shared/team_info", locals: { season_line: @current_pick.season_line, omit_pace: true } %>
+      <%= render partial: "/picks/over_under_buttons", locals: { pick: @current_pick } %>
+    </div>
+  </div>  
+</div>

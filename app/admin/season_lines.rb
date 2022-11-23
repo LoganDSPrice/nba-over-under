@@ -1,10 +1,13 @@
 ActiveAdmin.register SeasonLine do
+  # belongs_to :season
+  # belongs_to :team
+
   permit_params :year
 
   show do
     attributes_table do
-      row(:team) { resource.name }
-      row(:season) { resource.year }
+      row(:team) { resource.team.name }
+      row(:season) { resource.season.year }
       row(:line) 
     end
   end

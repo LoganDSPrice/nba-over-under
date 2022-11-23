@@ -1,0 +1,8 @@
+<div class="container ">
+  <% unless @league.drafting_enabled? %>
+    <p>No can do!</p>
+  <% else %>
+    <%# @current_pick.user.name %>
+    <%= render "current_pick" %>
+  <% end %>
+</div>

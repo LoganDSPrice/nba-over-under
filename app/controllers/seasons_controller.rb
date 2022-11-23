@@ -1,7 +1,7 @@
 class SeasonsController < ApplicationController
 
   def show_active_season
-    @enrollments = active_season.enrollments.includes(:user).joins(:user).merge(User.order(:name))
+    @enrollments = active_season.enrollments.includes(:user, :picks).joins(:user, :picks).merge(Pick.limit(10).order(:id))
     @season_lines = active_season.season_lines.includes(:team, :picks).order("team.city asc")
 
     render "show"

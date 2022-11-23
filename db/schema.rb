@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_12_211153) do
+ActiveRecord::Schema.define(version: 2022_10_17_224525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,25 +63,25 @@ ActiveRecord::Schema.define(version: 2022_01_12_211153) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "drafts", force: :cascade do |t|
-    t.boolean "active", default: false
+  create_table "enrollments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "league_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_id"], name: "index_enrollments_on_league_id"
+    t.index ["user_id", "league_id"], name: "index_enrollments_on_user_id_and_league_id", unique: true
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
+  end
+
+  create_table "leagues", force: :cascade do |t|
+    t.boolean "drafting_enabled", default: false
     t.bigint "season_id", null: false
     t.datetime "started_at"
     t.jsonb "draft_order"
     t.integer "active_drafter_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["season_id"], name: "index_drafts_on_season_id"
-  end
-
-  create_table "enrollments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "season_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["season_id"], name: "index_enrollments_on_season_id"
-    t.index ["user_id", "season_id"], name: "index_enrollments_on_user_id_and_season_id", unique: true
-    t.index ["user_id"], name: "index_enrollments_on_user_id"
+    t.index ["season_id"], name: "index_leagues_on_season_id"
   end
 
   create_table "locks", force: :cascade do |t|
@@ -165,9 +165,9 @@ ActiveRecord::Schema.define(version: 2022_01_12_211153) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "drafts", "seasons"
-  add_foreign_key "enrollments", "seasons"
+  add_foreign_key "enrollments", "leagues"
   add_foreign_key "enrollments", "users"
+  add_foreign_key "leagues", "seasons"
   add_foreign_key "locks", "picks"
   add_foreign_key "season_lines", "seasons"
   add_foreign_key "season_lines", "teams"

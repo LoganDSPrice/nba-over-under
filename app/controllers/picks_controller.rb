@@ -16,9 +16,10 @@ class PicksController < ApplicationController
     
     # error clause for if it fails to update
     
-    @pick.reload unless @pick.update(pick_params)
+    if @pick.over.nil?
+      @pick.reload unless @pick.update(pick_params)
+    end
 
-    
   end
 
   private
