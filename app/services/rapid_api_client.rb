@@ -49,7 +49,7 @@ class RapidApiClient
   # def headers
   #   {
   #     "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com",
-  #     "X-RapidAPI-Key": "1f7e92a9c7mshea107c9b255c98fp141df7jsn9f7bcf08ce84"
+  #     "X-RapidAPI-Key": ""
   #   }
   # end
   
