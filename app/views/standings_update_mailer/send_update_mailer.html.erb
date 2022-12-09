@@ -11,10 +11,10 @@
     <p>This is your weekly generated Xanadu NBA Over/Under standings update.  As a reminder our scoring is: </p>
 
     <ul style="list-style-type: none">
-      <li><%= Rails.application.credentials[:PICK_INCORRECT_LOCKED] %> for an locked incorrect pick</li>
-      <li><%= Rails.application.credentials[:PICK_INCORRECT] %> for a incorrect pick</li>
-      <li><%= Rails.application.credentials[:PICK_CORRECT] %> for a correct pick</li>
-      <li><%= Rails.application.credentials[:PICK_CORRECT_LOCKED] %> for a locked correct pick</li>
+      <li><%= ENV["PICK_INCORRECT_LOCKED"] || Rails.application.credentials[:PICK_INCORRECT_LOCKED] %> for an locked incorrect pick</li>
+      <li><%= ENV["PICK_INCORRECT"] || Rails.application.credentials[:PICK_INCORRECT] %> for a incorrect pick</li>
+      <li><%= ENV["PICK_CORRECT"] || Rails.application.credentials[:PICK_CORRECT] %> for a correct pick</li>
+      <li><%= ENV["PICK_CORRECT_LOCKED"] || Rails.application.credentials[:PICK_CORRECT_LOCKED] %> for a locked correct pick</li>
     </ul>
 
     <h3 style="text-decoration: underline">Current Standings</h3>
@@ -26,7 +26,7 @@
     </ul>
 
     <p>
-      <a href=<%= Rails.application.credentials[:APPLICATION_ROOT_URL] %>>
+      <a href=<%= ENV["APPLICATION_ROOT_URL"] || Rails.application.credentials[:APPLICATION_ROOT_URL] %>>
         Click here to see the full Over/Under table
       </a>
     </p>

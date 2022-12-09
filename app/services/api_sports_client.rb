@@ -39,7 +39,7 @@ class ApiSportsClient
 
   def headers
     {
-      "x-apisports-key": Rails.application.credentials[:API_SPORTS_API_KEY],
+      "x-apisports-key": ENV["API_SPORTS_API_KEY"] || Rails.application.credentials[:API_SPORTS_API_KEY],
     }
   end
   
