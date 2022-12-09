@@ -6,3 +6,4 @@ task :send_update_email, [:emails] => :environment do |task, args|
     StandingsUpdateMailer.send_update_mailer(args[:emails]).deliver
   end
 end
+StandingsUpdateMailer.send_update_mailer(["logandsprice@gmail.com"]).deliver

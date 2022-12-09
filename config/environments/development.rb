@@ -51,7 +51,7 @@ Rails.application.configure do
     authentication:       'plain',
   }
 
-  config.action_mailer.default_url_options = { host: ENV["APPLICATION_ROOT_URL"] }
+  config.action_mailer.default_url_options = { host: Rails.application.credentials[:APPLICATION_ROOT_URL] }
   config.action_mailer.perform_deliveries = true
 
 

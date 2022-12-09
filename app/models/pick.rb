@@ -33,11 +33,11 @@ class Pick < ApplicationRecord
 
   def score
     if over == season_line.over?
-      locked? ? ENV["PICK_CORRECT_LOCKED"].to_i : ENV["PICK_CORRECT"].to_i
+      locked? ? Rails.application.credentials[:PICK_CORRECT_LOCKED].to_i : Rails.application.credentials[:PICK_CORRECT].to_i
     elsif lock
-      ENV["PICK_INCORRECT_LOCKED"].to_i
+      Rails.application.credentials[:PICK_INCORRECT_LOCKED].to_i
     else
-      ENV["PICK_INCORRECT"].to_i
+      Rails.application.credentials[:PICK_INCORRECT].to_i
     end
   end
 
