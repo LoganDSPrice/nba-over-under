@@ -1,4 +1,4 @@
-require 'csv'
+# require 'csv'
 AppSetting.create
 
 Season.destroy_all
@@ -81,22 +81,57 @@ users.each do |user|
   end
 end
 
-url = "http://data.nba.net/10s/prod/v2/2021/teams.json"
-response = HTTParty.get(url)
-parsed = response.parsed_response
-nba_teams = parsed["league"]["standard"].select {|t| t["isNBAFranchise"] == true }
+# url = "http://data.nba.net/10s/prod/v2/2021/teams.json"
+# response = HTTParty.get(url)
+# parsed = response.parsed_response
+# nba_teams = parsed["league"]["standard"].select {|t| t["isNBAFranchise"] == true }
 
 
-nba_teams.each do |team|
-  new_team =  Team.new(
-    nba_id: team["teamId"],
-    city:   team["city"],
-    name:   team["nickname"],
-    conference: team["confName"],
-    division:   team["divName"]
-  )
-  new_team.save if new_team.valid?
-end
+# nba_teams.each do |team|
+#   new_team =  Team.new(
+#     nba_id: team["teamId"],
+#     city:   team["city"],
+#     name:   team["nickname"],
+#     conference: team["confName"],
+#     division:   team["divName"]
+#   )
+#   new_team.save if new_team.valid?
+# end
+
+Team.create!([
+  {nba_id: "1610612737", city: "Atlanta", name: "Hawks", conference: "East", division: "Southeast"},
+  {nba_id: "1610612738", city: "Boston", name: "Celtics", conference: "East", division: "Atlantic"},
+  {nba_id: "1610612751", city: "Brooklyn", name: "Nets", conference: "East", division: "Atlantic"},
+  {nba_id: "1610612766", city: "Charlotte", name: "Hornets", conference: "East", division: "Southeast"},
+  {nba_id: "1610612741", city: "Chicago", name: "Bulls", conference: "East", division: "Central"},
+  {nba_id: "1610612739", city: "Cleveland", name: "Cavaliers", conference: "East", division: "Central"},
+  {nba_id: "1610612742", city: "Dallas", name: "Mavericks", conference: "West", division: "Southwest"},
+  {nba_id: "1610612743", city: "Denver", name: "Nuggets", conference: "West", division: "Northwest"},
+  {nba_id: "1610612765", city: "Detroit", name: "Pistons", conference: "East", division: "Central"},
+  {nba_id: "1610612744", city: "Golden State", name: "Warriors", conference: "West", division: "Pacific"},
+  {nba_id: "1610612745", city: "Houston", name: "Rockets", conference: "West", division: "Southwest"},
+  {nba_id: "1610612754", city: "Indiana", name: "Pacers", conference: "East", division: "Central"},
+  {nba_id: "1610612746", city: "LA", name: "Clippers", conference: "West", division: "Pacific"},
+  {nba_id: "1610612747", city: "Los Angeles", name: "Lakers", conference: "West", division: "Pacific"},
+  {nba_id: "1610612763", city: "Memphis", name: "Grizzlies", conference: "West", division: "Southwest"},
+  {nba_id: "1610612748", city: "Miami", name: "Heat", conference: "East", division: "Southeast"},
+  {nba_id: "1610612749", city: "Milwaukee", name: "Bucks", conference: "East", division: "Central"},
+  {nba_id: "1610612750", city: "Minnesota", name: "Timberwolves", conference: "West", division: "Northwest"},
+  {nba_id: "1610612740", city: "New Orleans", name: "Pelicans", conference: "West", division: "Southwest"},
+  {nba_id: "1610612752", city: "New York", name: "Knicks", conference: "East", division: "Atlantic"},
+  {nba_id: "1610612760", city: "Oklahoma City", name: "Thunder", conference: "West", division: "Northwest"},
+  {nba_id: "1610612753", city: "Orlando", name: "Magic", conference: "East", division: "Southeast"},
+  {nba_id: "1610612755", city: "Philadelphia", name: "76ers", conference: "East", division: "Atlantic"},
+  {nba_id: "1610612756", city: "Phoenix", name: "Suns", conference: "West", division: "Pacific"},
+  {nba_id: "1610612757", city: "Portland", name: "Trail Blazers", conference: "West", division: "Northwest"},
+  {nba_id: "1610612758", city: "Sacramento", name: "Kings", conference: "West", division: "Pacific"},
+  {nba_id: "1610612759", city: "San Antonio", name: "Spurs", conference: "West", division: "Southwest"},
+  {nba_id: "1610612761", city: "Toronto", name: "Raptors", conference: "East", division: "Atlantic"},
+  {nba_id: "1610612762", city: "Utah", name: "Jazz", conference: "West", division: "Northwest"},
+  {nba_id: "1610612764", city: "Washington", name: "Wizards", conference: "East", division: "Southeast"}
+])
+
+
 # Import 2022 Season Lines for all teams
 # CsvSeasonLineImporter.import_csv("2022_lines.csv")
 
