@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_17_224525) do
-
+ActiveRecord::Schema[7.1].define(version: 2024_01_31_194831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,8 +21,8 @@ ActiveRecord::Schema.define(version: 2022_10_17_224525) do
     t.bigint "resource_id"
     t.string "author_type"
     t.bigint "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
@@ -34,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_10_17_224525) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -46,8 +45,8 @@ ActiveRecord::Schema.define(version: 2022_10_17_224525) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -59,15 +58,15 @@ ActiveRecord::Schema.define(version: 2022_10_17_224525) do
 
   create_table "app_settings", force: :cascade do |t|
     t.integer "locks_limit", default: 3
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "enrollments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "league_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["league_id"], name: "index_enrollments_on_league_id"
     t.index ["user_id", "league_id"], name: "index_enrollments_on_user_id_and_league_id", unique: true
     t.index ["user_id"], name: "index_enrollments_on_user_id"
@@ -76,25 +75,25 @@ ActiveRecord::Schema.define(version: 2022_10_17_224525) do
   create_table "leagues", force: :cascade do |t|
     t.boolean "drafting_enabled", default: false
     t.bigint "season_id", null: false
-    t.datetime "started_at"
+    t.datetime "started_at", precision: nil
     t.jsonb "draft_order"
     t.integer "active_drafter_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["season_id"], name: "index_leagues_on_season_id"
   end
 
   create_table "locks", force: :cascade do |t|
     t.bigint "pick_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["pick_id"], name: "index_locks_on_pick_id"
   end
 
   create_table "picks", force: :cascade do |t|
     t.boolean "over"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "season_line_id"
     t.bigint "enrollment_id"
     t.index ["enrollment_id"], name: "index_picks_on_enrollment_id"
@@ -107,8 +106,8 @@ ActiveRecord::Schema.define(version: 2022_10_17_224525) do
     t.bigint "season_id"
     t.float "projected_wins", default: 41.0
     t.float "line"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "wins", default: 0
     t.integer "losses", default: 0
     t.index ["season_id"], name: "index_season_lines_on_season_id"
@@ -118,8 +117,8 @@ ActiveRecord::Schema.define(version: 2022_10_17_224525) do
 
   create_table "seasons", force: :cascade do |t|
     t.integer "year"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "active", default: false
   end
 
@@ -129,29 +128,29 @@ ActiveRecord::Schema.define(version: 2022_10_17_224525) do
     t.string "name"
     t.string "conference"
     t.string "division"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "admin", default: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.string "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
+    t.datetime "invitation_created_at", precision: nil
+    t.datetime "invitation_sent_at", precision: nil
+    t.datetime "invitation_accepted_at", precision: nil
     t.integer "invitation_limit"
     t.string "invited_by_type"
     t.bigint "invited_by_id"
