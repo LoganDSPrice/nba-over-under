@@ -39,7 +39,7 @@ class SeasonLine < ApplicationRecord
   end
 
   def win_pct
-    wins/games_played.to_f
+    wins / games_played.to_f
   end
 
   def games_played

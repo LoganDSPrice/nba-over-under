@@ -2,7 +2,7 @@ class PicksController < ApplicationController
   before_action :set_pick, only: :update
 
   def index
-    @user = User.find_by_email("logandsprice@gmail.com")
+    @user = User.find_by_email('logandsprice@gmail.com')
     @picks = @user.picks.includes(:season_line, :team).joins(:team).merge(Team.order(name: :asc))
 
     teams_by_conference = Team.all.group_by { |team| team.conference }
@@ -10,15 +10,15 @@ class PicksController < ApplicationController
   end
 
   def update
-    puts "*"*60
-    puts "Updating a pick!"
-    puts "*"*60
+    puts '*' * 60
+    puts 'Updating a pick!'
+    puts '*' * 60
     
     # error clause for if it fails to update
     
-    if @pick.over.nil?
-      @pick.reload unless @pick.update(pick_params)
-    end
+    return unless @pick.over.nil?
+    @pick.reload unless @pick.update(pick_params)
+    
 
   end
 

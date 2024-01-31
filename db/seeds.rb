@@ -10,64 +10,64 @@ Lock.destroy_all
 
 users = [
   {
-    name:  "Logan",
-    email: "logandsprice@gmail.com",
+    name: 'Logan',
+    email: 'logandsprice@gmail.com',
     admin: true,
-    password: "password"
+    password: 'password'
   },
   {
-    name:  "Pavan",
-    email: "pavan.sarguru@gmail.com",
+    name: 'Pavan',
+    email: 'pavan.sarguru@gmail.com',
     admin: false,
-    password: "password"
+    password: 'password'
   },
   {
-    name:  "Peter",
-    email: "peterbutzen@gmail.com",
+    name: 'Peter',
+    email: 'peterbutzen@gmail.com',
     admin: false,
-    password: "password"
+    password: 'password'
   },
   {
-    name:  "Samarth",
-    email: "samarth.bhaskar@gmail.com",
+    name: 'Samarth',
+    email: 'samarth.bhaskar@gmail.com',
     admin: false,
-    password: "password"
+    password: 'password'
   },
   {
-    name:  "Piku",
-    email: "pulkitgoel92@gmail.com",
+    name: 'Piku',
+    email: 'pulkitgoel92@gmail.com',
     admin: false,
-    password: "password"
+    password: 'password'
   },
   {
-    name:  "Neal",
-    email: "ndodia2@gmail.com",
+    name: 'Neal',
+    email: 'ndodia2@gmail.com',
     admin: false,
-    password: "password"
+    password: 'password'
   },
   {
-    name:  "Yogen",
-    email: "yogenasher@gmail.com",
+    name: 'Yogen',
+    email: 'yogenasher@gmail.com',
     admin: false,
-    password: "password"
+    password: 'password'
   },
   {
-    name:  "Avinash",
-    email: "avinash.sarguru@gmail.com",
+    name: 'Avinash',
+    email: 'avinash.sarguru@gmail.com',
     admin: false,
-    password: "password"
+    password: 'password'
   },
   {
-    name:  "Vinayak",
-    email: "vinayak.ishwar@gmail.com",
+    name: 'Vinayak',
+    email: 'vinayak.ishwar@gmail.com',
     admin: false,
-    password: "password"
+    password: 'password'
   },
   {
-    name:  "Prateek",
-    email: "PrateekSingh01@gmail.com",
+    name: 'Prateek',
+    email: 'PrateekSingh01@gmail.com',
     admin: false,
-    password: "password"
+    password: 'password'
   },
   
 ]
@@ -86,7 +86,6 @@ end
 # parsed = response.parsed_response
 # nba_teams = parsed["league"]["standard"].select {|t| t["isNBAFranchise"] == true }
 
-
 # nba_teams.each do |team|
 #   new_team =  Team.new(
 #     nba_id: team["teamId"],
@@ -99,38 +98,37 @@ end
 # end
 
 Team.create!([
-  {nba_id: "1610612737", city: "Atlanta", name: "Hawks", conference: "East", division: "Southeast"},
-  {nba_id: "1610612738", city: "Boston", name: "Celtics", conference: "East", division: "Atlantic"},
-  {nba_id: "1610612751", city: "Brooklyn", name: "Nets", conference: "East", division: "Atlantic"},
-  {nba_id: "1610612766", city: "Charlotte", name: "Hornets", conference: "East", division: "Southeast"},
-  {nba_id: "1610612741", city: "Chicago", name: "Bulls", conference: "East", division: "Central"},
-  {nba_id: "1610612739", city: "Cleveland", name: "Cavaliers", conference: "East", division: "Central"},
-  {nba_id: "1610612742", city: "Dallas", name: "Mavericks", conference: "West", division: "Southwest"},
-  {nba_id: "1610612743", city: "Denver", name: "Nuggets", conference: "West", division: "Northwest"},
-  {nba_id: "1610612765", city: "Detroit", name: "Pistons", conference: "East", division: "Central"},
-  {nba_id: "1610612744", city: "Golden State", name: "Warriors", conference: "West", division: "Pacific"},
-  {nba_id: "1610612745", city: "Houston", name: "Rockets", conference: "West", division: "Southwest"},
-  {nba_id: "1610612754", city: "Indiana", name: "Pacers", conference: "East", division: "Central"},
-  {nba_id: "1610612746", city: "LA", name: "Clippers", conference: "West", division: "Pacific"},
-  {nba_id: "1610612747", city: "Los Angeles", name: "Lakers", conference: "West", division: "Pacific"},
-  {nba_id: "1610612763", city: "Memphis", name: "Grizzlies", conference: "West", division: "Southwest"},
-  {nba_id: "1610612748", city: "Miami", name: "Heat", conference: "East", division: "Southeast"},
-  {nba_id: "1610612749", city: "Milwaukee", name: "Bucks", conference: "East", division: "Central"},
-  {nba_id: "1610612750", city: "Minnesota", name: "Timberwolves", conference: "West", division: "Northwest"},
-  {nba_id: "1610612740", city: "New Orleans", name: "Pelicans", conference: "West", division: "Southwest"},
-  {nba_id: "1610612752", city: "New York", name: "Knicks", conference: "East", division: "Atlantic"},
-  {nba_id: "1610612760", city: "Oklahoma City", name: "Thunder", conference: "West", division: "Northwest"},
-  {nba_id: "1610612753", city: "Orlando", name: "Magic", conference: "East", division: "Southeast"},
-  {nba_id: "1610612755", city: "Philadelphia", name: "76ers", conference: "East", division: "Atlantic"},
-  {nba_id: "1610612756", city: "Phoenix", name: "Suns", conference: "West", division: "Pacific"},
-  {nba_id: "1610612757", city: "Portland", name: "Trail Blazers", conference: "West", division: "Northwest"},
-  {nba_id: "1610612758", city: "Sacramento", name: "Kings", conference: "West", division: "Pacific"},
-  {nba_id: "1610612759", city: "San Antonio", name: "Spurs", conference: "West", division: "Southwest"},
-  {nba_id: "1610612761", city: "Toronto", name: "Raptors", conference: "East", division: "Atlantic"},
-  {nba_id: "1610612762", city: "Utah", name: "Jazz", conference: "West", division: "Northwest"},
-  {nba_id: "1610612764", city: "Washington", name: "Wizards", conference: "East", division: "Southeast"}
-])
-
+               { nba_id: '1610612737', city: 'Atlanta', name: 'Hawks', conference: 'East', division: 'Southeast' },
+               { nba_id: '1610612738', city: 'Boston', name: 'Celtics', conference: 'East', division: 'Atlantic' },
+               { nba_id: '1610612751', city: 'Brooklyn', name: 'Nets', conference: 'East', division: 'Atlantic' },
+               { nba_id: '1610612766', city: 'Charlotte', name: 'Hornets', conference: 'East', division: 'Southeast' },
+               { nba_id: '1610612741', city: 'Chicago', name: 'Bulls', conference: 'East', division: 'Central' },
+               { nba_id: '1610612739', city: 'Cleveland', name: 'Cavaliers', conference: 'East', division: 'Central' },
+               { nba_id: '1610612742', city: 'Dallas', name: 'Mavericks', conference: 'West', division: 'Southwest' },
+               { nba_id: '1610612743', city: 'Denver', name: 'Nuggets', conference: 'West', division: 'Northwest' },
+               { nba_id: '1610612765', city: 'Detroit', name: 'Pistons', conference: 'East', division: 'Central' },
+               { nba_id: '1610612744', city: 'Golden State', name: 'Warriors', conference: 'West', division: 'Pacific' },
+               { nba_id: '1610612745', city: 'Houston', name: 'Rockets', conference: 'West', division: 'Southwest' },
+               { nba_id: '1610612754', city: 'Indiana', name: 'Pacers', conference: 'East', division: 'Central' },
+               { nba_id: '1610612746', city: 'LA', name: 'Clippers', conference: 'West', division: 'Pacific' },
+               { nba_id: '1610612747', city: 'Los Angeles', name: 'Lakers', conference: 'West', division: 'Pacific' },
+               { nba_id: '1610612763', city: 'Memphis', name: 'Grizzlies', conference: 'West', division: 'Southwest' },
+               { nba_id: '1610612748', city: 'Miami', name: 'Heat', conference: 'East', division: 'Southeast' },
+               { nba_id: '1610612749', city: 'Milwaukee', name: 'Bucks', conference: 'East', division: 'Central' },
+               { nba_id: '1610612750', city: 'Minnesota', name: 'Timberwolves', conference: 'West', division: 'Northwest' },
+               { nba_id: '1610612740', city: 'New Orleans', name: 'Pelicans', conference: 'West', division: 'Southwest' },
+               { nba_id: '1610612752', city: 'New York', name: 'Knicks', conference: 'East', division: 'Atlantic' },
+               { nba_id: '1610612760', city: 'Oklahoma City', name: 'Thunder', conference: 'West', division: 'Northwest' },
+               { nba_id: '1610612753', city: 'Orlando', name: 'Magic', conference: 'East', division: 'Southeast' },
+               { nba_id: '1610612755', city: 'Philadelphia', name: '76ers', conference: 'East', division: 'Atlantic' },
+               { nba_id: '1610612756', city: 'Phoenix', name: 'Suns', conference: 'West', division: 'Pacific' },
+               { nba_id: '1610612757', city: 'Portland', name: 'Trail Blazers', conference: 'West', division: 'Northwest' },
+               { nba_id: '1610612758', city: 'Sacramento', name: 'Kings', conference: 'West', division: 'Pacific' },
+               { nba_id: '1610612759', city: 'San Antonio', name: 'Spurs', conference: 'West', division: 'Southwest' },
+               { nba_id: '1610612761', city: 'Toronto', name: 'Raptors', conference: 'East', division: 'Atlantic' },
+               { nba_id: '1610612762', city: 'Utah', name: 'Jazz', conference: 'West', division: 'Northwest' },
+               { nba_id: '1610612764', city: 'Washington', name: 'Wizards', conference: 'East', division: 'Southeast' }
+             ])
 
 # Import 2022 Season Lines for all teams
 # CsvSeasonLineImporter.import_csv("2022_lines.csv")
@@ -145,7 +143,6 @@ Team.create!([
 #   "Yogen" => ["Celtics", "Cavaliers", "Warriors"],
 #   "Avinash" => ["Hawks", "Pelicans", "Knicks"],
 # }
-
 
 # Enroll all users in 2022 season
 # User.all.each do |user|

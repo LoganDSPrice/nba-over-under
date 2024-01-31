@@ -16,7 +16,7 @@ ActiveAdmin.register League do
   # end
   
   action_item :enroll_all_users, only: :show do
-    link_to "Enroll All Users", enroll_all_users_admin_league_path(resource), method: :post
+    link_to 'Enroll All Users', enroll_all_users_admin_league_path(resource), method: :post
   end
   
   member_action :enroll_all_users, method: :post do
@@ -24,15 +24,15 @@ ActiveAdmin.register League do
       resource.enrollments.create(user: user)
     end
 
-    redirect_to admin_league_path, notice: "All users enrolled!"
+    redirect_to admin_league_path, notice: 'All users enrolled!'
   end
 
   action_item :build_draft, only: :show do
-    link_to "Build Draft", build_draft_admin_league_path(resource), method: :post
+    link_to 'Build Draft', build_draft_admin_league_path(resource), method: :post
   end
   
   member_action :build_draft, method: :post do
     resource.build_draft!
-    redirect_to admin_league_path, notice: "Draft Built!"
+    redirect_to admin_league_path, notice: 'Draft Built!'
   end
 end

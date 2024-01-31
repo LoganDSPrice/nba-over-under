@@ -19,7 +19,7 @@
 #
 #  fk_rails_...  (season_id => seasons.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class DraftTest < ActiveSupport::TestCase
   # test "the truth" do

@@ -26,8 +26,8 @@ class Lock < ApplicationRecord
   validate :locks_count_within_limit, on: :create
 
   def locks_count_within_limit
-    if enrollment.locks.count >= AppSetting.first.locks_limit
-      errors.add(:base, 'Exceeded locks limit')
-    end
+    return unless enrollment.locks.count >= AppSetting.first.locks_limit
+    errors.add(:base, 'Exceeded locks limit')
+    
   end
 end

@@ -3,7 +3,7 @@ class LocksController < ApplicationController
     @lock = Lock.new(lock_params)
 
     if @lock.save
-      render "replace_lock"
+      render 'replace_lock'
     else
       @lock = Lock.new(lock_params)
     end
@@ -13,7 +13,7 @@ class LocksController < ApplicationController
     pick = Pick.find(params[:pick_id])
     pick.lock.destroy
     @lock = pick.build_lock
-    render "replace_lock", locals: { pick: pick }
+    render 'replace_lock', locals: { pick: pick }
   end
 
   private

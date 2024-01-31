@@ -34,7 +34,7 @@ module ApiSportsStandingsUpdater
     end
 
     def team
-      @team ||= (Team.find_by("CONCAT(CITY, ' ', NAME) LIKE ?", team_name) || (Team.find_by_name("Clippers") if team_name == "Los Angeles Clippers"))
+      @team ||= (Team.find_by("CONCAT(CITY, ' ', NAME) LIKE ?", team_name) || (Team.find_by_name('Clippers') if team_name == 'Los Angeles Clippers'))
     end
 
     def wins
@@ -46,16 +46,14 @@ module ApiSportsStandingsUpdater
     end
   end
   
-  def self.run(years_of_season: "2022-2023")
+  def self.run(years_of_season: '2022-2023')
     client = ApiSportsClient.new
     @standings_set = StandingsSet.new(client.get_standings(years_of_season: years_of_season))
 
     @season = Season.find_by_year(years_of_season.last(4))
     
-    self.update_team_records
-  end
-  
-  private
+    update_team_records
+  end  
   
   def self.update_team_records
     @standings_set.team_standings.each do |ts|

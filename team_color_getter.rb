@@ -2,9 +2,7 @@ teams_url = 'https://teamcolorcodes.com/nba-team-color-codes/'
 teams_doc = Nokogiri::HTML(HTTParty.get(teams_url))
 team_links = teams_doc.css('ol:nth-child(8) a')
 
-teams_url_hash = {
-
-}
+teams_url_hash = {}
 
 team_links.each do |team_link|
   teams_url_hash[team_link.children.first.text] = team_link.attributes['href'].value
@@ -45,13 +43,13 @@ teams_url_hash.each do |team, url|
     # puts search_queries.class
     puts '*' * 60
     team_doc = Nokogiri::HTML(HTTParty.get(url))
-    color_block_index = team.in?(["Brooklyn Nets", "Denver Nuggets", "Houston Rockets"]) ? 1 : 0
+    color_block_index = team.in?(['Brooklyn Nets', 'Denver Nuggets', 'Houston Rockets']) ? 1 : 0
     colorblock = team_doc.css('.colorblock')[color_block_index]
     style = colorblock.attributes['style'].value
     
     logo_src_url = team_doc.css("a[href*='PNG.png']").first.attributes['href'].value
   
-    team = "LA Clippers" if team == "Los Angeles Clippers"
+    team = 'LA Clippers' if team == 'Los Angeles Clippers'
     final_hash[team] = {
       'style' => style,
       'logo_src_url' => logo_src_url

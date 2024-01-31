@@ -35,7 +35,7 @@
 #  index_users_on_reset_password_token               (reset_password_token) UNIQUE
 #
 
-class User <ApplicationRecord
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, 
@@ -49,7 +49,7 @@ class User <ApplicationRecord
          :validatable,
          :trackable
 
-  has_many  :enrollments, dependent: :destroy
+  has_many :enrollments, dependent: :destroy
   has_many :enrolled_seasons, through: :enrollments, source: :season
   has_many :picks, through: :enrollments
 

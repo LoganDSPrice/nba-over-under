@@ -140,10 +140,10 @@ class Team < ApplicationRecord
 }
 
   def style
-    Team::TEAM_COLORS["#{city} #{name}"]["style"]
+    Team::TEAM_COLORS["#{city} #{name}"]['style']
   end
   
   def img_url
-    Team::TEAM_COLORS["#{city} #{name}"]["logo_src_url"]
+    Team::TEAM_COLORS["#{city} #{name}"]['logo_src_url']
   end
 end

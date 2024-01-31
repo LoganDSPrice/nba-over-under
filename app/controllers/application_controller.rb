@@ -4,9 +4,8 @@ class ApplicationController < ActionController::Base
   
   # before_action :authenticate_user!
 
-
   def index
-    @last_updated = Team.first.updated_at.in_time_zone("Central Time (US & Canada)").strftime("Last updated at %H:%M on %m/%d")
+    @last_updated = Team.first.updated_at.in_time_zone('Central Time (US & Canada)').strftime('Last updated at %H:%M on %m/%d')
     @teams = Team.all.sort_by { |team| team.city }
     @user_names = User.all.pluck(:name)
 
@@ -14,9 +13,8 @@ class ApplicationController < ActionController::Base
     @picks = all_picks.group_by { |pick| pick.team_name }
     @standings = build_standings(all_picks)
 
-    render "/index.html.erb"
+    render '/index.html.erb'
   end
-
 
   private
 
@@ -31,14 +29,14 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_active_admin_user!
-    puts "*"*60
-    puts "authenticate_active_admin_user!"
-    puts "*"*60
+    puts '*' * 60
+    puts 'authenticate_active_admin_user!'
+    puts '*' * 60
     authenticate_user!
-    unless current_user.admin?
-      flash[:alert] = "Unauthorized Access!"
-      redirect_to root_path
-    end
+    return if current_user.admin?
+    flash[:alert] = 'Unauthorized Access!'
+    redirect_to root_path
+    
   end
 
   

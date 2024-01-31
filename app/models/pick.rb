@@ -33,11 +33,11 @@ class Pick < ApplicationRecord
 
   def score
     if over == season_line.over?
-      locked? ? (ENV["PICK_CORRECT_LOCKED"] || Rails.application.credentials[:PICK_CORRECT_LOCKED]).to_i : (ENV["PICK_CORRECT"] || Rails.application.credentials[:PICK_CORRECT]).to_i
+      locked? ? (ENV['PICK_CORRECT_LOCKED'] || Rails.application.credentials[:PICK_CORRECT_LOCKED]).to_i : (ENV['PICK_CORRECT'] || Rails.application.credentials[:PICK_CORRECT]).to_i
     elsif lock
-      (ENV["PICK_INCORRECT_LOCKED"] || Rails.application.credentials[:PICK_INCORRECT_LOCKED]).to_i
+      (ENV['PICK_INCORRECT_LOCKED'] || Rails.application.credentials[:PICK_INCORRECT_LOCKED]).to_i
     else
-      (ENV["PICK_INCORRECT"] || Rails.application.credentials[:PICK_INCORRECT]).to_i
+      (ENV['PICK_INCORRECT'] || Rails.application.credentials[:PICK_INCORRECT]).to_i
     end
   end
 
@@ -60,9 +60,9 @@ class Pick < ApplicationRecord
 
   def update_season_channel
     pick = ApplicationController.render(
-      partial: "picks/pick",
+      partial: 'picks/pick',
       locals: { pick: self }
     )
-    ActionCable.server.broadcast "season_channel_#{season.id}", { pick: pick, pickId: self.id }
+    ActionCable.server.broadcast "season_channel_#{season.id}", { pick: pick, pickId: id }
   end
 end

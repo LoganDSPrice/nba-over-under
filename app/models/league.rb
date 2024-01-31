@@ -21,14 +21,14 @@
 #
 class League < ApplicationRecord
   belongs_to :season
-  belongs_to :active_enrollment, class_name: "Enrollment", foreign_key: :active_drafter_id, optional: true
+  belongs_to :active_enrollment, class_name: 'Enrollment', foreign_key: :active_drafter_id, optional: true
 
   has_many :enrollments
   has_many :picks, through: :enrollments
 
   def build_draft!
     shuffled_enrollments = enrollments.shuffle
-    season_lines = self.season.season_lines.includes(:team).order("teams.city asc")
+    season_lines = season.season_lines.includes(:team).order('teams.city asc')
 
     draft_round_number = 1
     season_lines.each do |season_line|
@@ -36,13 +36,12 @@ class League < ApplicationRecord
       enrollments_ordered_for_round.each do |enrollment|
         Pick.create(season_line: season_line, enrollment: enrollment)
       end
-      draft_round_number +=1
+      draft_round_number += 1
     end
   end
   
   def start!
     # update active: true,
-
 
   end
 end

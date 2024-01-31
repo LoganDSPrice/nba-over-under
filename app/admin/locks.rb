@@ -15,14 +15,14 @@ ActiveAdmin.register Lock do
   #   permitted
   # end
 
-  form title: 'A custom title' do |f|
+  form title: 'A custom title' do |_f|
     inputs 'Details' do
       input :pick_id
     end
     panel 'Markup' do
-      "The following can be used in the content below..."
+      'The following can be used in the content below...'
     end
-    para "Press cancel to return to the list without saving."
+    para 'Press cancel to return to the list without saving.'
     actions
   end
   

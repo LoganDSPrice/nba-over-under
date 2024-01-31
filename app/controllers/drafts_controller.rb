@@ -6,7 +6,7 @@ class DraftsController < ApplicationController
 
   private
 
-    def setup_league
-      @league = League.find(params[:league_id])
-    end
+  def setup_league
+    @league = League.find(params[:league_id])
+  end
 end

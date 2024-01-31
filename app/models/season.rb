@@ -29,9 +29,9 @@ class Season < ApplicationRecord
   def single_active_season?
     return unless active?
     
-    if Season.where(active: true).count >=1
-      errors.add(:active, "Another season is already active")
-    end
+    return unless Season.where(active: true).count >= 1
+    errors.add(:active, 'Another season is already active')
+    
   end
 
   def self.active_season

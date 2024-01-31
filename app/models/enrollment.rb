@@ -27,12 +27,11 @@ class Enrollment < ApplicationRecord
   has_many :picks, dependent: :destroy
   has_many :locks, through: :picks
   has_one :draft, through: :season
-  has_one :draft_active_in, class_name: "Draft", foreign_key: :active_drafter_id
+  has_one :draft_active_in, class_name: 'Draft', foreign_key: :active_drafter_id
   
   validates_uniqueness_of :user, scope: :league
 
   # after_create :create_picks
-
 
   def create_picks # I don't like this. I don't remember why I decided Picks should exist upon enrollment...
     season.season_lines.each do |season_line|
