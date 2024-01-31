@@ -1,56 +1,52 @@
 class RapidApiClient
-  # include HTTParty
-  # base_uri "https://api-nba-v1.p.rapidapi.com"
-  # MAX_RETRIES = 5
+  include HTTParty
+  base_uri "https://api-nba-v1.p.rapidapi.com"
+  MAX_RETRIES = 5
 
-  # def get_standings(season: "2022")
-  #   times_retried = 0
+  def call(endpoint, query)
+    times_retried = 0
 
-  #   begin
-  #     query = {
-  #       league: "standard",
-  #       season: "2022"
-  #     }
-  #     response = self.class.get(
-  #       "/standings",
-  #       query: query,
-  #       headers: headers,
-  #       timeout: 60
-  #     )
-  #   rescue Net::ReadTimeout => error
-  #     if times_retried < MAX_RETRIES
-  #       times_retried += 1
-  #       puts "Failed to fetch standings, retry #{times_retried}/#{MAX_RETRIES}"
-  #       retry
-  #     else
-  #       puts "Exiting script."
-  #       exit(1)
-  #     end
-  #   end
+    begin
+      self.class.get(
+        endpoint,
+        query: query,
+        headers: headers,
+        timeout: 60
+      )
+    rescue Net::ReadTimeout => error
+      if times_retried < MAX_RETRIES
+        times_retried += 1
+        puts "Failed to fetch #{endpoint}, retry #{times_retried}/#{MAX_RETRIES}"
+        retry
+      else
+        puts "Exiting script."
+        exit(1)
+      end
+    end
+  end
 
-  #   # current_team_standings = response["response"]
+  def get_teams
+    query = {}
+    response = call("/teams", query)["response"]
+    response.select {|team| team.dig("nbaFranchise") && !team.dig("allStar")}
+  end
 
-  #   # current_team_standings.each do |team|
-  #   #   nba_team = Team.find_by(nba_id: team.dig("team", "id"))
-  #   #   season_line_to_update = SeasonLine.find_by(team: nba_team, season: Season.active_season)
+  def get_standings(season: "2023")
+    endpoint = "/standings"
+    query = {
+      league: "standard",
+      season: season
+    }
+    call(endpoint, query)["response"]
+  end
 
-  #   #   season_line_to_update.update(
-  #   #     projected_wins: (team["winPct"].to_f * 82),
-  #   #     wins: team["win"],
-  #   #     losses: team["loss"],
-  #   #   )
-  #   #   puts "#{nba_team.name} updated with #{season_line_to_update.projected_wins} projected wins!"
-  #   # end
-  #   response
-  # end
+  protected
 
-  # protected
-
-  # def headers
-  #   {
-  #     "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com",
-  #     "X-RapidAPI-Key": ""
-  #   }
-  # end
+  def headers
+    {
+      "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com",
+      "X-RapidAPI-Key": ENV['RAPID_API_API_KEY'] || Rails.application.credentials[:RAPID_API_API_KEY]
+    }
+  end
   
 end

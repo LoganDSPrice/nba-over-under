@@ -2,14 +2,15 @@
 #
 # Table name: teams
 #
-#  id         :bigint           not null, primary key
-#  city       :string
-#  conference :string
-#  division   :string
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  nba_id     :string
+#  id                :bigint           not null, primary key
+#  city              :string
+#  conference        :string
+#  division          :string
+#  name              :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  nba_id            :string
+#  rapid_api_team_id :integer
 #
 
 class Team < ApplicationRecord
@@ -145,5 +146,9 @@ class Team < ApplicationRecord
   
   def img_url
     Team::TEAM_COLORS["#{city} #{name}"]['logo_src_url']
+  end
+
+  def logo_path
+    img_url.split('/')[-1]
   end
 end

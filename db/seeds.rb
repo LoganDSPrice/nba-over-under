@@ -130,6 +130,22 @@ Team.create!([
                { nba_id: '1610612764', city: 'Washington', name: 'Wizards', conference: 'East', division: 'Southeast' }
              ])
 
+client = RapidApiClient.new
+api_teams = client.get_teams
+api_teams.each do |api_team|
+  team = Team.find_by_name(api_team.dig("nickname"))
+  team.update(rapid_api_team_id: api_team.dig("id"))
+end
+
+require 'open-uri'
+
+Team.all.each do |team|
+  download = URI.open(team.img_url)
+  open("app/assets/images/#{download.base_uri.to_s.split('/')[-1]}", 'wb') do |file|
+    file << download.read
+  end
+end
+
 # Import 2022 Season Lines for all teams
 # CsvSeasonLineImporter.import_csv("2022_lines.csv")
 
