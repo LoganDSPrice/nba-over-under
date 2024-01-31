@@ -3,7 +3,7 @@
     <div class="fs-2 <%= omit_pace ? "col-6" : "col-4" %> my-1">
       <div class="ratio ratio-1x1 d-flex align-items-center">
         <div class="row m-0">
-          <%= image_tag season_line.team.img_url, style: "margin:auto; max-height: 100%; height: auto; width: auto; max-width: 100%;" %>
+          <%= image_tag(season_line.team.logo_path, style: "margin:auto; max-height: 100%; height: auto; width: auto; max-width: 100%;") %>
         </div>
       </div>
     </div>

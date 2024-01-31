@@ -13,8 +13,8 @@ orientation: vertical
 polymorphism: false
 sort: true
 warn: true
-title: sample title
-exclude: "ActiveStorage::Attachment,ActiveStorage::Blob"
+title: NBA Over/Under
+exclude: "ActiveStorage::Attachment,ActiveStorage::Blob,ActiveStorage::VariantRecord"
 only: null
 only_recursion_depth: null
 prepend_primary: false
