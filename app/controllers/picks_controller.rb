@@ -11,12 +11,12 @@ class PicksController < ApplicationController
 
   def update
     puts '*' * 60
-    puts 'Updating a pick!'
+    puts 'In Picks#update!'
     puts '*' * 60
     
     # error clause for if it fails to update
     
-    return unless @pick.over.nil?
+    return unless @pick.league.drafting_enabled?
     @pick.reload unless @pick.update(pick_params)
     
 

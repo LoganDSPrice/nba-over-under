@@ -23,6 +23,7 @@ class Pick < ApplicationRecord
   has_one  :season, through: :enrollment
   has_one  :team, through: :season_line
   has_one  :user, through: :enrollment
+  has_one  :league, through: :enrollment
 
   after_update :update_season_channel
   after_touch :update_season_channel
