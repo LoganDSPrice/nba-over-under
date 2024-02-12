@@ -2,7 +2,7 @@
   "name": "nba-over-under",
   "private": true,
   "engines": {
-    "node": "21.6.1",
+    "node": "20.11.0",
     "yarn": "1.22.21"
   },
   "dependencies": {
